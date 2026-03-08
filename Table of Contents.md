@@ -1,19 +1,18 @@
 Оглавление
-- [Контейнеризация](#контейнеризация)
-  - [Оркестрация](#оркестрация)
-  - [Мониторинг и Наблюдаемость / Monitoring \& Observability (Metrics)](#мониторинг-и-наблюдаемость--monitoring--observability-metrics)
-  - [Логирование / Logging (Events \& Audit)](#логирование--logging-events--audit)
-  - [Сетевая связность и анализ / Network Analysis \& Connectivity](#сетевая-связность-и-анализ--network-analysis--connectivity)
-  - [Система управления конфигурациями](#система-управления-конфигурациями)
-  - [Хранение секретов и ключей / Secret Management](#хранение-секретов-и-ключей--secret-management)
-  - [Управление привилегированным доступом / Privileged Access Management (PAM)](#управление-привилегированным-доступом--privileged-access-management-pam)
-  - [Управление идентификацией и доступом / Identity and Access Management (IAM)](#управление-идентификацией-и-доступом--identity-and-access-management-iam)
-  - [Базы данных](#базы-данных)
-  - [Брокер сообщений](#брокер-сообщений)
-  - [Облачные вычисления](#облачные-вычисления)
-  - [Система управления версиями](#система-управления-версиями)
-  - [Резервное копирование и восстановление / Backup \& Recovery](#резервное-копирование-и-восстановление--backup--recovery)
-  - [Языки программирования](#языки-программирования)
+- [Оркестрация](#оркестрация)
+- [Мониторинг и Наблюдаемость / Monitoring \& Observability (Metrics)](#мониторинг-и-наблюдаемость--monitoring--observability-metrics)
+- [Логирование / Logging (Events \& Audit)](#логирование--logging-events--audit)
+- [Сетевая связность и анализ / Network Analysis \& Connectivity](#сетевая-связность-и-анализ--network-analysis--connectivity)
+- [Система управления конфигурациями](#система-управления-конфигурациями)
+- [Хранение секретов и ключей / Secret Management](#хранение-секретов-и-ключей--secret-management)
+- [Управление привилегированным доступом / Privileged Access Management (PAM)](#управление-привилегированным-доступом--privileged-access-management-pam)
+- [Управление идентификацией и доступом / Identity and Access Management (IAM)](#управление-идентификацией-и-доступом--identity-and-access-management-iam)
+- [Базы данных](#базы-данных)
+- [Брокер сообщений](#брокер-сообщений)
+- [Облачные вычисления](#облачные-вычисления)
+- [Система управления версиями](#система-управления-версиями)
+- [Резервное копирование и восстановление / Backup \& Recovery](#резервное-копирование-и-восстановление--backup--recovery)
+- [Языки программирования](#языки-программирования)
 
 
 1. Лицензирование и Свобода / Licensing & Free Software
@@ -37,74 +36,23 @@
 
 
 
-
-# Контейнеризация
-1. Контейнеризация виртуализация на уровне операционной системы, контейнерная виртуализация, зонная виртуализация) — метод виртуализации, при котором ядро операционной системы поддерживает несколько изолированных экземпляров пространства пользователя вместо одного.
-* [62. Основы контейнеризации](https://basis.gnulinux.pro/ru/latest/basis/62/62._Основы_контейнеризации.html)
-
-  1.1 Docker — инструмент для автоматизации процесса развертывания и управления приложениями в контейнеризированных средах. Он используется как средство контейнеризации приложений, позволяя упаковать приложение вместе со всеми его настройками и зависимостями в контейнер.
-* [Docker для начинающих: что это такое и как пользоваться](https://habr.com/ru/companies/netologyru/articles/967546/)
-* [Почти все, что вы хотели бы знать про Docker](https://habr.com/ru/articles/822707/)
-* [Docker на каждый день: Ключевые команды в одной статье-шпаргалке](https://habr.com/ru/articles/913978/)
-* [Docker изнутри: исчерпывающее руководство. Механизмы контейнеризации + примеры, эксперименты и реализация](https://habr.com/ru/articles/935178/)
-* [Docker для начинающих: простое развертывание приложения за несколько шагов](https://habr.com/ru/articles/888540/)
-* [Исповедь Docker-хейтера](https://habr.com/ru/articles/467607/)
-* [Docker для Начинающих – Полный Курс](https://www.youtube.com/watch?v=n9uCgUzfeRQ)
-* [Docker для новичков - #1 Что такое докер, контейнер и image, Docker Desktop?](https://www.youtube.com/watch?v=RLfWakY-Ueo)
-* [УРОКИ ДОКЕР ДЛЯ НАЧИНАЮЩИХ - ОТ А до "Ж" | Основы докера для начинающих | Установка докера](https://www.youtube.com/watch?v=UZgYKbrNAdw)
-* [Ящик со змеями: контейнеризация Python-приложений и работа с Docker «Python Developer. Professional»](https://www.youtube.com/watch?v=6wp6nZMl2YI)
-* [Docker для Python разработчика // Демо-занятие курса «Python Developer. Professional»](https://www.youtube.com/watch?v=qiIQPXwqSTg)
+Контейнеризация и изоляция / Containerization and Isolation (CI)
+1. Механизмы системной изоляции / System Isolation Mechanisms — Фундаментальные средства разделения ресурсов и создания независимых окружений.
+   * Jails — Нативная технология FreeBSD для виртуализации на уровне ядра и создания изолированных «тюрем».
+   * bhyve — Современный гипервизор FreeBSD для запуска гостевых операционных систем с аппаратным ускорением.
+   * Cgroups v2 — Механизм иерархического ограничения ресурсов (CPU, RAM, I/O) в ядре Linux.
+   * Namespaces — Технология изоляции системных ресурсов (PID, Network, Mount) для разделения видимости процессов.
+2. Среды исполнения контейнеров / Container Runtimes — Программное обеспечение для управления жизненным циклом и запуска контейнеризированных приложений.
+   * Docker — Популярная платформа для автоматизации развертывания и управления приложениями в изолированных средах.[инфо](https://habr.com/ru/companies/netologyru/articles/967546/)[инфо](https://habr.com/ru/articles/822707/)[Docker на каждый день: Ключевые команды в одной статье-шпаргалке](https://habr.com/ru/articles/913978/)[инфо](https://habr.com/ru/articles/935178/)[инфо](https://habr.com/ru/articles/888540/)[инфо](https://www.youtube.com/watch?v=n9uCgUzfeRQ)[инфо](https://www.youtube.com/watch?v=RLfWakY-Ueo)[инфо](https://www.youtube.com/watch?v=UZgYKbrNAdw)[инфо](https://basis.gnulinux.pro/ru/latest/basis/63/63._%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0_%D1%81_podman.html)
+   * Podman — Движок для управления контейнерами и подами, работающий без центрального демона (daemonless).[инфо](https://selectel.ru/blog/tutorials/what-is-podman/)[инфо](https://zomro.com/rus/blog/faq/649-what-is-podman-and-how-is-it-better-than-docker)[инфо](https://habr.com/ru/companies/timeweb/articles/585758/)[инфо](https://www.youtube.com/watch?v=lr1rYnUubpQ)
+   * Containerd — Индустриальный стандарт среды выполнения, оптимизированный для интеграции в системы оркестрации.[инфо](https://habr.com/ru/companies/flant/articles/325358/)[инфо](https://habr.com/ru/companies/domclick/articles/566224/)[инфо](https://medium.com/@anatoliibriushinin/what-is-containerd-bf36c39875c5)[инфо](https://habr.com/ru/articles/568274/) [инфо](https://habr.com/ru/companies/flant/articles/442036/)
+3. Инструментарий сборки и управления / Build and Management Tools — Средства создания артефактов и локального развертывания кластерных сред.
+   * Buildah — Утилита для сборки OCI-совместимых образов без использования привилегированных демонов.[инфо](https://andreyex.ru/operacionnaya-sistema-linux/nachalo-raboty-s-buildah/)[инфо](https://habr.com/ru/companies/redhatrussia/articles/470928/)
+   * Minikube — Инструмент для быстрого запуска локального кластера Kubernetes в целях разработки и тестирования.[инфо](https://kubernetes.io/ru/docs/tutorials/hello-minikube/)[инфо](https://www.reddit.com/r/kubernetes/comments/go5nug/my_complete_course_on_learning_kubernetes_using/?tl=ru)[инфо](https://selectel.ru/blog/tutorials/how-to-run-kubernetes-with-minikube/)[инфо](https://habr.com/ru/companies/flant/articles/333470/)
+   * BastilleBSD — Фреймворк для автоматизации развертывания и управления конфигурациями Jails во FreeBSD.
+   * Vagrant — Инструмент для создания и конфигурирования переносимых сред разработки на базе различных гипервизоров.
 
 
- 1.2. Podman (от Pod Manager — это командный инструмент с открытым исходным кодом, созданный для управления контейнерами и подами (группами связанных контейнеров). 
-Podman позволяет создавать группы контейнеров с общими сетевыми и пространственными ресурсами, что ближе к концепции Kubernetes и облегчает оркестрацию сложных приложений.
-Командная структура Podman практически идентична Docker CLI, что делает переход для пользователей интуитивным и простым.
-
-* [Что такое Podman: управление контейнерами и установка на Linux](https://selectel.ru/blog/tutorials/what-is-podman/)
-* [63. Работа с podman](https://basis.gnulinux.pro/ru/latest/basis/63/63._%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0_%D1%81_podman.html)
-* [Что такое Podman и чем он лучше Docker?](https://zomro.com/rus/blog/faq/649-what-is-podman-and-how-is-it-better-than-docker)
-* [Используем контейнеры Podman вместо виртуальных машин](https://habr.com/ru/companies/timeweb/articles/585758/)
-* [Основы контейнеризации (обзор Docker и Podman)](https://habr.com/ru/articles/659049/)
-* [Используем функционал Podman вместо docker-compose на примере Gitea](https://habr.com/ru/articles/705614/)
-* [Вы должны перейти на Podman сейчас же. Но это не точно…](https://habr.com/ru/companies/cdnnow/articles/825828/)
-* [Используем контейнеры Podman вместо виртуальных машин](https://habr.com/ru/companies/timeweb/articles/585758/)
-* [Установка Podman - который является инструментом управления контейнерами на Fedora Server 41](https://www.youtube.com/watch?v=UOZNCrC7QFw)
-* [Podman - подготовка окружения в ОС Альт Linux для работы с docker-контейнерами](https://www.youtube.com/watch?v=2RFKzx9YKIw)
-* [Запуск первого контейнера из образа Python в Podman](https://www.youtube.com/watch?v=HRltFgrwLFs)
-* [Docker Для Начинающих за 1 Час | Docker с Нуля](https://www.youtube.com/watch?v=lr1rYnUubpQ)
-* [/r/podman/](https://www.reddit.com/r/podman/)
-
-
-1.3. Containerd — это высокоуровневая, открытая среда выполнения контейнеров, созданная для управления жизненным циклом контейнеров, включая их запуск, остановку и управление образами. Изначально разработанный компанией Docker, этот проект был передан в фонд Cloud Native Computing Foundation (CNCF) и сейчас выступает как самостоятельное, минималистичное решение, обеспечивающее производительность и безопасность для систем управления контейнерами более высокого уровня, таких как Kubernetes.
-* [Зачем нужен containerd и почему его отделили от Docker](https://habr.com/ru/companies/flant/articles/325358/)
-* [Различия между Docker, containerd, CRI-O и runc](https://habr.com/ru/companies/domclick/articles/566224/)
-* [Да что такое этот ваш containerd?](https://medium.com/@anatoliibriushinin/what-is-containerd-bf36c39875c5)
-* [Записки о containerd](https://habr.com/ru/articles/568274/)
-* [Зрелая исполняемая среда для контейнеров: containerd стал «выпускником» CNCF](https://habr.com/ru/companies/flant/articles/442036/)
-
-
-
-1.4. Minikube - это утилита командной строки, которая позволяет легко развертывать локальный кластер Kubernetes. Она полезна для разработчиков, которым нужна локальная среда Kubernetes для тестирования и разработки приложений.
-* [Развертывание Kubernetes-кластера с помощью minikube](https://learning.infoteam.msk.ru/Rebrain/K8s/KUB 02 Развертывание Kubernetes-кластера с помощью minikube.pdf)
-* [Привет, Minikube](https://kubernetes.io/ru/docs/tutorials/hello-minikube/)
-* [Мой полный курс по изучению Kubernetes с использованием Minikube!](https://www.reddit.com/r/kubernetes/comments/go5nug/my_complete_course_on_learning_kubernetes_using/?tl=ru)
-* [Работа в Kubernetes с помощью Minikube](https://selectel.ru/blog/tutorials/how-to-run-kubernetes-with-minikube/)
-* [Начало работы в Kubernetes с помощью Minikube](https://habr.com/ru/companies/flant/articles/333470/)
-* [Kubernetes vs Docker Swarm: что выбрать](https://msk.top-academy.ru/articles/kubernetes-vs-docker-swarm-chto-vybrat)
-* [Как обеспечить высокую доступность в Docker Swarm](https://labex.io/ru/tutorials/docker-how-to-ensure-high-availability-in-a-docker-swarm-411536)
-* [1 - Что такое Kubernetes? Запуск локального кластера Kubernetes. Minikube](https://www.youtube.com/watch?v=Amkkr4_nsyc)
-
-
-
-
-1.5 Buildah — это мощный инструмент командной строки, предназначенный для сборки контейнерных образов, соответствующих стандарту OCI (Open Container Initiative). С его помощью можно как вручную писать скрипты для сборки, так и использовать готовые файлы инструкций, такие как Dockerfile или Containerfile. 
-Buildah предлагает возможность создания образов из базового компонента scratch, что идеально подходит для минимизации контейнеров и включения только требуемых элементов. Такая функциональность делает Buildah универсальным решением для разработки образов с точным контролем и высокой степенью совместимости с современными контейнерными инфраструктурами.
-* [Начало работы с Buildah](https://andreyex.ru/operacionnaya-sistema-linux/nachalo-raboty-s-buildah/)
-* [Рекомендации по запуску Buildah внутри контейнера](https://habr.com/ru/companies/redhatrussia/articles/470928/)
-* [Podman и Buildah для пользователей Docker](https://habr.com/ru/companies/redhatrussia/articles/467105/)
-* [What is Buildah?](https://www.redhat.com/en/topics/containers/what-is-buildah)
-* [Speeding up container image builds with Buildah](https://www.youtube.com/watch?v=qsh7NL8H4GQ)
-* [Getting Started with Buildah](https://buildah.io/blogs/2017/11/02/getting-started-with-buildah.html) 
 
 
 
