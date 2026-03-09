@@ -1,514 +1,170 @@
-Оглавление
-- [Оркестрация и управление кластерами / Orchestration and Cluster Management (OCM)](#оркестрация-и-управление-кластерами--orchestration-and-cluster-management-ocm)
-- [Мониторинг и Наблюдаемость / Monitoring \& Observability (Metrics)](#мониторинг-и-наблюдаемость--monitoring--observability-metrics)
-- [Логирование / Logging (Events \& Audit)](#логирование--logging-events--audit)
-- [Сетевая связность и анализ / Network Analysis \& Connectivity](#сетевая-связность-и-анализ--network-analysis--connectivity)
-- [Система управления конфигурациями](#система-управления-конфигурациями)
-- [Хранение секретов и ключей / Secret Management](#хранение-секретов-и-ключей--secret-management)
-- [Управление привилегированным доступом / Privileged Access Management (PAM)](#управление-привилегированным-доступом--privileged-access-management-pam)
-- [Управление идентификацией и доступом / Identity and Access Management (IAM)](#управление-идентификацией-и-доступом--identity-and-access-management-iam)
-- [Базы данных](#базы-данных)
-- [Брокер сообщений](#брокер-сообщений)
-- [Облачные вычисления](#облачные-вычисления)
-- [Система управления версиями](#система-управления-версиями)
-- [Резервное копирование и восстановление / Backup \& Recovery](#резервное-копирование-и-восстановление--backup--recovery)
-- [Языки программирования](#языки-программирования)
-
+# Table of Contents / Оглавление (ToC)
 
 ## Лицензирование и Свобода / Licensing and Free Software (LFS)
-
 1. **Типы открытых лицензий и концепции / Open License Types and Concepts** — Фундаментальные правила использования, модификации и распространения свободного ПО.
     * **GNU GPL (General Public License)** — «Вирусная» свобода, обязывающая производные работы также оставаться открытыми.
-    * **MIT / Apache 2.0** — Пермиссивные лицензии, разрешающие любое использование, включая закрытие кода в коммерческих целях.
-    * **Copyleft vs Copyright** — Разъяснение концепции «авторского права наоборот» в противовес традиционному авторскому праву.
+    * **MIT** — Максимально пермиссивная лицензия, разрешающая использование кода в любых целях.
+    * **Apache 2.0** — Лицензия, обеспечивающая патентную чистоту и свободу использования.
+    * **Copyleft vs Copyright** — Разъяснение концепции «авторского права наоборот» в противовес традиционному праву.
 
 ## Операционные системы / Operating Systems (OS)
-
-1. **Unix-подобные системы и ядра / Unix-like Systems and Kernels** — Выбор системного окружения, определяющий стабильность, безопасность и производительность всей вертикали сервисов.
-    * **GNU/Linux** — Основная рабочая среда с фокусом на архитектурных особенностях различных дистрибутивов.
-        * **Debian / Ubuntu** — Индустриальный стандарт стабильности и широкой поддержки сообщества.
-        * **Arch Linux** — Система для глубокого понимания внутренних механизмов ОС и контроля каждого компонента.
-        * **Alpine Linux** — Минималистичная ОС (5МБ), оптимизированная для использования в качестве базы Docker-контейнеров.
-    * **BSD Family** — Прямые наследники Unix с акцентом на легендарный сетевой стек и чистоту системного кода.
-        * **FreeBSD** — Высокопроизводительная система с нативными подсистемами **ZFS** и **Jails**.
-        * **OpenBSD** — ОС с бескомпромиссным подходом к безопасности и аудиту исходного кода.
-    * **illumos (OpenSolaris progeny)** — Наследник OpenSolaris, ориентированный на использование технологий **ZFS**, **DTrace** и зон (**Zones**).
-    * **GNU/Hurd** — Микроядерная операционная система, представляющая академический интерес для изучения концепции микроядерной архитектуры.
-)
-
-
+1. **Unix-подобные системы и ядра / Unix-like Systems and Kernels** — Выбор системного окружения, определяющий стабильность всей вертикали сервисов.
+    * **GNU/Linux** — Основная рабочая среда с акцентом на архитектурных особенностях дистрибутивов.
+        * **Debian** — Стандарт стабильности и предсказуемости в Linux-мире.
+        * **Ubuntu** — Самый популярный дистрибутив с широчайшей поддержкой сообщества.
+        * **Arch Linux** — Система для глубокого контроля и понимания внутренних механизмов ОС.
+        * **Alpine Linux** — Минималистичная ОС (5МБ), оптимизированная для Docker-контейнеров.
+    * **BSD Family** — Прямые наследники Unix с легендарным сетевым стеком и чистотой кода.
+        * **FreeBSD** — Высокопроизводительная ОС с подсистемами ZFS и Jails.
+        * **OpenBSD** — ОС с бескомпромиссным подходом к аудиту безопасности.
+    * **illumos** — Наследник OpenSolaris для ценителей ZFS, DTrace и зон (Zones).
+    * **GNU/Hurd** — Микроядерная архитектура, представляющая академический интерес.
 
 ## Контейнеризация и изоляция / Containerization and Isolation (CI)
-
-1. **Механизмы системной изоляции / System Isolation Mechanisms** — Фундаментальные средства разделения ресурсов и создания независимых окружений.
-    * **Jails** — Нативная технология FreeBSD для виртуализации на уровне ядра и создания изолированных «тюрем».
-    * **bhyve** — Современный гипервизор FreeBSD для запуска гостевых операционных систем с аппаратным ускорением.
-    * **Cgroups v2** — Механизм иерархического ограничения ресурсов (CPU, RAM, I/O) в ядре Linux.
-    * **Namespaces** — Технология изоляции системных ресурсов (PID, Network, Mount) для разделения видимости процессов.
-
-2. **Среды исполнения контейнеров / Container Runtimes** — Программное обеспечение для управления жизненным циклом и запуска контейнеризированных приложений.
-    * **Docker** — Платформа для автоматизации развертывания и управления приложениями в изолированных средах. [[1]](https://habr.com/ru/companies/netologyru/articles/967546/) [[2]](https://habr.com/ru/articles/822707/) [[3]](https://habr.com/ru/articles/913978/) [[4]](https://habr.com/ru/articles/935178/) [[5]](https://habr.com/ru/articles/888540/) [[6]](https://www.youtube.com/watch?v=n9uCgUzfeRQ) [[7]](https://www.youtube.com/watch?v=RLfWakY-Ueo) [[8]](https://www.youtube.com/watch?v=UZgYKbrNAdw) [[9]](https://basis.gnulinux.pro/ru/latest/basis/63/63._%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0_%D1%81_podman.html)
-    * **Podman** — Движок для управления контейнерами и подами, работающий без центрального демона (daemonless). [[1]](https://selectel.ru/blog/tutorials/what-is-podman/) [[2]](https://zomro.com/rus/blog/faq/649-what-is-podman-and-how-is-it-better-than-docker) [[3]](https://habr.com/ru/companies/timeweb/articles/585758/) [[4]](https://www.youtube.com/watch?v=lr1rYnUubpQ)
-    * **Containerd** — Индустриальный стандарт среды выполнения, оптимизированный для интеграции в системы оркестрации. [[1]](https://habr.com/ru/companies/flant/articles/325358/) [[2]](https://habr.com/ru/companies/domclick/articles/566224/) [[3]](https://medium.com/@anatoliibriushinin/what-is-containerd-bf36c39875c5) [[4]](https://habr.com/ru/articles/568274/) [[5]](https://habr.com/ru/companies/flant/articles/442036/)
-
-3. **Инструментарий сборки и управления / Build and Management Tools** — Средства создания артефактов и локального развертывания кластерных сред.
-    * **Buildah** — Утилита для сборки OCI-совместимых образов без использования привилегированных демонов. [[1]](https://andreyex.ru/operacionnaya-sistema-linux/nachalo-raboty-s-buildah/) [[2]](https://habr.com/ru/companies/redhatrussia/articles/470928/)
-    * **Minikube** — Инструмент для быстрого запуска локального кластера Kubernetes в целях разработки и тестирования. [[1]](https://kubernetes.io/ru/docs/tutorials/hello-minikube/) [[2]](https://www.reddit.com/r/kubernetes/comments/go5nug/my_complete_course_on_learning_kubernetes_using/?tl=ru) [[3]](https://selectel.ru/blog/tutorials/how-to-run-kubernetes-with-minikube/) [[4]](https://habr.com/ru/companies/flant/articles/333470/)
-    * **BastilleBSD** — Фреймворк для автоматизации развертывания и управления конфигурациями Jails во FreeBSD.
-    * **Vagrant** — Инструмент для создания и конфигурирования переносимых сред разработки на базе различных гипервизоров.
-
-
+1. **Механизмы системной изоляции / System Isolation Mechanisms** — Средства разделения ресурсов ядра.
+    * **Jails** — Нативная технология FreeBSD для виртуализации на уровне ОС.
+    * **bhyve** — Гипервизор FreeBSD для запуска гостевых систем с аппаратным ускорением.
+    * **Cgroups v2** — Механизм иерархического ограничения ресурсов в ядре Linux.
+    * **Namespaces** — Технология изоляции системных ресурсов (PID, Network, Mount) в Linux.
+2. **Среды исполнения контейнеров / Container Runtimes** — Управление жизненным циклом приложений.
+    * **Docker** — Платформа для автоматизации развертывания приложений в изолированных средах. [инфо](https://habr.com)
+    * **Podman** — Движок для управления контейнерами без центрального демона (daemonless). [инфо](https://selectel.ru)
+    * **Containerd** — Индустриальный стандарт среды выполнения для систем оркестрации. [инфо](https://habr.com)
+3. **Инструментарий сборки и управления / Build and Management Tools** — Создание артефактов и локальный деплой.
+    * **Buildah** — Утилита для сборки OCI-образов без использования демонов. [инфо](https://habr.com)
+    * **Minikube** — Инструмент для быстрого запуска локального кластера Kubernetes. [инфо](https://kubernetes.io)
+    * **BastilleBSD** — Фреймворк для автоматизации управления Jails во FreeBSD.
+    * **Vagrant** — Инструмент для создания переносимых сред разработки.
 
 ## Оркестрация и управление кластерами / Orchestration and Cluster Management (OCM)
+1. **Платформы оркестрации / Orchestration Platforms** — Автоматизация и интеграция сложных систем.
+    * **Kubernetes (K8s)** — Промышленный стандарт администрирования контейнеров. [инфо](https://habr.com)
+    * **Docker Swarm** — Встроенное решение Docker для управления кластерами. [инфо](https://habr.com)
+    * **HashiCorp Nomad** — Универсальный оркестратор для контейнеров и бинарных файлов. [инфо](https://habr.com)
+    * **K3s** — Облегченная версия Kubernetes для малых серверов и Edge. [инфо](https://habr.com)
+2. **Декларативная доставка и управление / GitOps and Delivery** — Управление через Git.
+    * **Argo CD** — Инструмент непрерывной доставки для K8s, реализующий паттерн GitOps. [инфо](https://habr.com)
+    * **Flux CD** — Набор инструментов для синхронизации кластера K8s с конфигурацией в Git. [инфо](https://habr.com)
 
-1. **Платформы оркестрации / Orchestration Platforms** — Автоматизированное управление, координация и интеграция сложных систем, сервисов и приложений. [инфо](https://practicum.yandex.ru) [инфо](https://selectel.ru)
-    * **Kubernetes (K8s)** — Промышленный стандарт автоматизации развертывания, масштабирования и администрирования контейнеров. [инфо](https://habr.com) [инфо](https://habr.com) [инфо](https://habr.com) [инфо](https://kubernetes.io) [инфо](https://kubernetes.io)
-    * **Docker Swarm** — Встроенное решение Docker для управления кластерами через модель управляющих и рабочих узлов. [инфо](https://gist.github.com) [инфо](https://habr.com) [инфо](https://msk.top-academy.ru)
-    * **HashiCorp Nomad** — Универсальный оркестратор для различных типов нагрузок: контейнеров, микросервисов и виртуальных машин. [инфо](https://habr.com) [инфо](https://habr.com) [инфо](https://habr.com)
-    * **K3s** — Облегченная версия Kubernetes (один бинарник), оптимизированная для малых серверов и граничных вычислений (Edge). [инфо](https://habr.com)
-
-2. **Декларативная доставка и управление / GitOps and Delivery** — Методология управления инфраструктурой, где Git является единственным источником истины.
-    * **Argo CD** — Инструмент непрерывной доставки для Kubernetes, реализующий паттерн GitOps для автоматической синхронизации кластера с репозиторием. [инфо](https://habr.com)
-    * **Flux CD** — Набор инструментов для поддержания состояния кластеров Kubernetes в соответствии с конфигурацией в Git. [инфо](https://habr.com)
-
-3. **Сетевые сервисные сетки / Service Mesh (SM)** — Управление взаимодействием между микросервисами на уровне трафика и безопасности.
-    * **Istio** — Платформа для настройки балансировки трафика, обеспечения безопасности (mTLS) и мониторинга внутри кластера. [инфо](https://habr.com)
-    * **Linkerd** — Минималистичная и высокопроизводительная сервисная сетка для Kubernetes, ориентированная на простоту эксплуатации. [инфо](https://habr.com)
-
-
-
-
-
-
-
-
-
-## Мониторинг и Наблюдаемость / Monitoring & Observability (Metrics)
-3. «Пульс» системы. Сбор числовых показателей (CPU, RAM, запросы) для оценки здоровья инфраструктуры в реальном времени.
- 3.1. Сбор и хранение метрик (Time Series DB):
-   3.1.1. Prometheus — это система мониторинга, предназначенная для сбора, хранения и обработки метрик, оптимизированная для работы с временными рядами данных. Она самостоятельно запрашивает данные у серверов и устройств, записывая их в собственную базу. Собранную информацию можно использовать для визуализации и глубокого анализа, адаптируя процесс под ваши конкретные задачи.
-* [Полное руководство по Prometheus в 2019 году](https://habr.com/ru/companies/slurm/articles/455290/)
-* [Человеческим языком про метрики 1: Потерянное введение](https://habr.com/ru/companies/tochka/articles/683608/)
-* [«База» по метрикам в Prometheus](https://habr.com/ru/companies/sportmaster_lab/articles/872204/)
-* [Основы мониторинга (обзор Prometheus и Grafana)](https://habr.com/ru/articles/709204/)
-* [Prometheus: от основ до mem-saving оптимизации](https://habr.com/ru/companies/nixys/articles/785070/)
-* [Мониторинг и алертинг приложений с помощью Prometheus и Grafana](https://www.youtube.com/watch?v=TKDsFYYOarc)
-* [Prometheus: как Бог огня стал Богом мониторинга](https://habr.com/ru/companies/axenix/articles/842390/)
-* [Zabbix vs Prometheus. Что выбрать для гетерогенной инфраструктуры?](https://habr.com/ru/articles/852394/)
-
- 3.1.2. VictoriaMetrics представляет собой мощное open-source решение для мониторинга и анализа данных временных рядов, предлагая конкурентоспособную замену Prometheus. Система выделяется своей масштабируемостью, эффективным использованием дискового пространства и высокой скоростью обработки, что делает её идеальным инструментом для сбора, хранения и анализа метрик приложений и инфраструктуры в режиме реального времени.
-* [Как снизить расходы на мониторинг: замена Prometheus на VictoriaMetrics](https://habr.com/ru/articles/850990/)
-* [VictoriaMetrics, разделяй и агрегируй! Оптимизация хранения метрик](https://habr.com/ru/companies/t2/articles/922168/)
-* [Очередной бенчмарк VictoriaMetrics против Prometheus](https://habr.com/ru/companies/cinimex/articles/943772/)
-* [Тернистый путь к единому хранилищу метрик](https://habr.com/ru/companies/oleg-bunin/articles/851024/)
-* [VictoriaMetrics и мониторинг приватных облаков. Павел Колобаев](https://prohoster.info/blog/administrirovanie/victoriametrics-i-monitoring-privatnyh-oblakov-pavel-kolobaev)
-* 
- 3.1.3. Zabbix представляет собой бесплатную систему мониторинга с открытым исходным кодом, разработанную для контроля состояния ИТ-инфраструктуры, включая серверы, сети, виртуальные машины, приложения и облачные сервисы. Она позволяет собирать данные, выявлять возникающие проблемы, отправлять уведомления пользователям и предоставлять средства для анализа и визуализации информации. Кроме того, Zabbix поддерживает разнообразные методы сбора данных, такие как использование агентов, проведение простых проверок и применение протокола SNMP.
-* [Универсальная система мониторинга Zabbix — введение](https://habr.com/ru/articles/73338/comments/)
-* [Zabbix: мониторим всё подряд (на примере Redis'а)](https://habr.com/ru/articles/485538/)
-* [ТОП 6 фишек Zabbix: применение и настройка](https://habr.com/ru/companies/banki/articles/886306/)
-* [Мониторинг пользовательских устройств с помощью Zabbix](https://habr.com/ru/companies/tbank/articles/736704/)
-* [Установка и настройка Zabbix 5](https://selectel.ru/blog/zabbix-5-guide/)
-* [Zabbix: Укрощение шторма алертов. От гистерезиса до Telegram и авто-ремедиации](https://habr.com/ru/articles/947884/)
-* [Zabbix — автоматизация управления пользователями (JIT)](https://habr.com/ru/articles/970512/)
-* [ТОП 6 фишек Zabbix: применение и настройка](https://habr.com/ru/companies/banki/articles/886306/comments/)
-* [Использование мониторинга Zabbix в малом офисе с инфраструктурой на ОС Windows](https://habr.com/ru/articles/657105/)
-* [Правильное обнаружение проблем с помощью Zabbix](https://habr.com/ru/companies/oleg-bunin/articles/320678/) 
-* [Zabbix для DevOps: как мы внедряли систему мониторинга в процессы разработки и тестирования](https://habr.com/ru/companies/pt/articles/325276/)
-* [Мониторинг PostgreSQL с использованием Zabbix](https://habr.com/ru/companies/zabbix/articles/515816/)
-* 
- 3.2. Визуализация и Оповещения (Dashboards & Alerting):
- 3.2.1. Grafana представляет собой бесплатную платформу с открытым исходным кодом, предназначенную для визуализации данных. Она предоставляет пользователям возможность создавать интерактивные дашборды с графиками, диаграммами и уведомлениями, собирая информацию из различных источников, включая базы данных и системы мониторинга. Это веб-приложение широко используется для мониторинга ИТ-инфраструктуры, анализа данных, а также отображения метрик производительности и использования ресурсов в режиме реального времени.
-* [Мониторинг с Grafana. Best practices](https://habr.com/ru/companies/karuna/articles/771134/)
-* [Grafana — прошлое, настоящее, будущее и альтернативы](https://habr.com/ru/companies/mws/articles/812883/)
-* [Основы мониторинга (обзор Prometheus и Grafana)](https://habr.com/ru/articles/709204/)
-* [Enterprise мониторинг с нуля: Prometheus + Grafana для FastAPI приложения](https://habr.com/ru/articles/959430/)
-* [Гайд по бизнес-метрикам в Grafana для аналитиков: бороться и искать, найти и не сдаваться](https://habr.com/ru/articles/904526/)
-* [Grafana как еще один инструмент для технического мониторинга создаваемых нами программных продуктов](https://habr.com/ru/companies/slurm/articles/431122/)
-* [Как мы выстроили систему визуализации ошибок с помощью Grafana и снизили время на их отработку с 2 часов до 15 секунд](https://habr.com/ru/articles/803527/)
-* 
- 3.2.2. Prometheus Alertmanager — превращает сухие цифры мониторинга в уведомления (Telegram, Slack, Email) при сбоях.
- 3.2.3. Проверка доступности (Uptime Monitoring):
- 3.2.4 Uptime Kuma — простой и эффективный инструмент для внешней проверки работы сайтов и API.
-
-
-## Логирование / Logging (Events & Audit)
-Система сбора, фильтрации и анализа текстовых событий. «Черный ящик» инфраструктуры для расследования инцидентов и аудита безопасности.
-Готовые архитектурные решения (Stacks)
-  * ELK Stack — Классический промышленный стандарт. [инфо](https://habr.com/ru/articles/538840/), [инфо](https://blog.skillfactory.ru/stek-elk-kak-rabotat-s-dannymi-prilozhenii/), [инфо](https://serveradmin.ru/ustanovka-i-nastroyka-elasticsearch-logstash-kibana-elk-stack/),   [инфо](https://github.com/mekhanme/elk-mikrot), [инфо](https://habr.com/ru/companies/otus/articles/721004/)
-  * EFK Stack — Стандарт для Kubernetes и Cloud Native сред. [инфо](https://arenda-server.cloud/blog/nastrojka-steka-logirovanija-elasticsearch-fluentd-i-kibana-efk-v-kubernetes/), [инфо](https://slurm.io/blog/tpost/0d06xiobme-logirovanie-v-kubernetes-kak-sobirat-hra), [инфо](https://habr.com/ru/companies/otus/articles/721004/), [инфо](https://ealebed.github.io/posts/2020/%D1%81%D0%B1%D0%BE%D1%80-%D0%B8-%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7-%D0%BB%D0%BE%D0%B3%D0%BE%D0%B2-kubernetes-%D0%BA%D0%BB%D0%B0%D1%81%D1%82%D0%B5%D1%80%D0%B0-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-efk/)   
-  * PLG Stack — Легковесный современный стек от Grafana Labs. [инфо](https://habr.com/ru/articles/800781/), [инфо](https://www.youtube.com/watch?v=2JIyHNskK-c), [инфо](https://habr.com/ru/articles/772702/), [инфо](https://habr.com/ru/companies/kts/articles/723980/), [инфо](https://habr.com/ru/articles/766102/)
-  * Graylog — Полнофункциональная платформа управления логами «всё в одном». [инфо](https://winitpro.ru/index.php/2024/04/11/graylog-sbor-analiz-logov/), [инфо](https://habr.com/ru/companies/otus/articles/703882/)
-
-Компоненты и инструменты (Pipeline)
-1. Агенты сбора (Shippers / Agents)
-   * Fluent Bit — Сверхлегкий сборщик для K8s и Edge. [инфо](https://habr.com/ru/articles/548998/), [инфо](https://www.youtube.com/watch?v=WlGC0OUcxlQ), [инфо](https://hostingsrating.ru/articles/nastroika-fluent-bit-dlia-legkovesnoi-agregacii-logov)
-   * Filebeat — Надежная доставка логов из файлов. [инфо](https://habr.com/ru/articles/550352/), [инфо](https://www.reddit.com/r/elasticsearch/comments/xcqrq8/filebeat_v_logstash/?tl=ru)
-   * Promtail — Агент для отправки логов в Loki. [инфо](https://itzm.tech/p/loki-in-docker/), [инфо](https://notes.kiriha.ru/soft/promtail/)
-2. Агрегация и маршрутизация (Aggregators)
-   * Vector — Высокопроизводительный Rust-инструмент. [инфо](https://beget.com/ru/kb/how-to/vps/vector-servis-sbora-logov), [инфо](https://clickhouse.com:2053/docs/ru/use-cases/observability/clickstack/ingesting-data/vector), [инфо](https://docs.selectel.ru/logs/tools/vector)
-   * Fluentd — Гибкий стандарт с огромным выбором плагинов. [инфо](https://cloud.vk.com/docs/cases/cases-logs/case-fluentd)
-   * Logstash — Мощный инструмент трансформации данных. [инфо](https://habr.com/ru/companies/m2tech/articles/660909/), [инфо](https://habr.com/ru/articles/451264/), [инфо](https://habr.com/ru/articles/451264/), [инфо](https://habr.com/ru/articles/165059/)
-3. Хранение и Поиск (Storage & Search Engines)
-   * Elasticsearch — Полнотекстовый поиск по Big Data. [инфо](https://habr.com/ru/articles/489924/), [инфо](https://habr.com/ru/articles/165059/)
-   * Grafana Loki — Экономное хранилище, оптимизированное под Grafana. [инфо](https://habr.com/ru/companies/kts/articles/723980/), [инфо](https://habr.com/ru/articles/800781/)
-4. Визуализация и интерфейс (UI / Dashboards)
-   * Kibana — Глубокий анализ данных Elasticsearch. [инфо](https://www.simbirsoft.com/blog/kibana-chto-eto-osnovnye-vozmozhnosti-i-preimushchestva-primeneniya/), [инфо](https://habr.com/ru/companies/citymobil/articles/521802/)
-   * Grafana — Единая панель для логов и метрик. [инфо](https://habr.com/ru/companies/karuna/articles/771134/), [инфо](https://habr.com/ru/companies/karuna/articles/771134/)
-
-
- ## Сетевая связность и анализ / Network Analysis & Connectivity
-«Нервная система» инфраструктуры. Инструменты для учета ресурсов, управления трафиком внутри кластеров и глубокого анализа сетевых протоколов.
-1. Учет и инвентаризация (IPAM / Source of Truth)
-   * NetBox — Промышленный стандарт для учета IP-адресов, стоек и кабельных систем. (Докс, Гайд)
-   * phpIPAM — Облегченная альтернатива для управления адресным пространством. (Инфо)
-2. Оркестрация трафика и безопасность (Service Mesh & SDN)
-   * Cilium — Сетевая подсистема на базе eBPF. Обеспечивает высокую скорость и защиту на уровне L7. (Сайт, Инфо)
-   * Istio — Мощная платформа для управления связями, безопасностью и мониторингом микросервисов. (Гайд, Докс)
-   * Calico — Инструмент для настройки сетевых политик (Network Policies) в Kubernetes. (Инфо)
-3. Балансировка и доставка (Ingress & Edge)
-   * Nginx Proxy Manager — Панель управления проксированием и автоматизацией SSL (Let's Encrypt). (Сайт)
-   * Traefik — Современный прокси, автоматически настраивающийся под Docker и K8s. (Гайд)
-   * HAProxy — Высокопроизводительный балансировщик нагрузки для критических узлов. (Докс)
-   * MetalLB — Балансировщик нагрузки (LoadBalancer) для серверов на «голом железе». (Кейс)
-4. Анализ и диагностика (Analysis & Troubleshooting)
-   * Wireshark / TShark — Глубокий анализ пакетов и сетевых протоколов. (Курс, Докс)
-   * Nmap — Сканирование портов и аудит безопасности сети. (Гайд)
-   * Netshoot — Контейнер со всеми сетевыми утилитами для отладки внутри Kubernetes. (GitHub)
-   * MTR (My Traceroute) — Диагностика задержек и потерь на всем маршруте. (Инфо)
-
-## Система управления конфигурациями
-5. Система управления конфигурациями – это набор инструментов и практик для автоматизации и централизованного управления состоянием инфраструктуры, приложений и данных с помощью «инфраструктуры как кода».
-
-5.1 Chef в контексте DevOps — это мощный инструмент управления конфигурацией, который позволяет командам автоматизировать процессы развертывания, настройки и управления инфраструктурой как кодом. Chef использует Ruby в качестве языка для написания "рецептов", которые описывают желаемое состояние серверов и других ресурсов.
-* [Chef для новичков](https://habr.com/ru/companies/slurm/articles/208858/)
-* [Управление конфигурациями: Puppet vs. Chef vs. Ansible](https://habr.com/ru/companies/otus/articles/774150/)
-* [Chef для решения повседневных задач](https://habr.com/ru/articles/263341/)
-* [Chef за 21 день. Часть первая. Введение](https://habr.com/ru/companies/epam_systems/articles/208542/)
-* [Настраиваем сервер с Chef (Быстро и просто)](https://habr.com/ru/companies/staply/articles/244111/)
-* [Chef или как управлять тысячей серверов](https://habr.com/ru/articles/87302/)
-
-
-
-5.2 Puppet — это инструмент и платформа автоматизации, используемый в практике DevOps для управления конфигурацией и оркестровки серверов. В рамках DevOps, Puppet помогает командам разработчиков и системных администраторов автоматически настраивать, развертывать и управлять инфраструктурой, обеспечивая ее стабильное состояние и соответствие заданным параметрам.
-* [Введение в Puppet](https://habr.com/ru/companies/avito/articles/507346/)
-* [CI/CD-инфраструктура на базе Puppet и GitLab для управления флотом из 9000 хостов](https://habr.com/ru/companies/sportmaster_lab/articles/965238/)
-* [Как стать кукловодом или Puppet для начинающих](https://habr.com/ru/articles/163811/)
-* [Puppet в Avito: 15 000 серверов, CI/CD и уроки из продакшна](https://habr.com/ru/companies/avito/articles/939080/)
-* [Puppet+Hiera. Выжимаем максимум](https://habr.com/ru/companies/semrush/articles/412587/)
-* [С Puppet на Ansible за 4 года: 5 инсайтов и письмо себе в прошлое](https://habr.com/ru/companies/banki/articles/951808/)
-* [Puppet, система управления конфигурациями. Часть I](https://habr.com/ru/articles/67471/)
-* [Puppet, система управления конфигурациями. Часть II](https://habr.com/ru/articles/68532/)
-* [2.9.14.4 Puppet - централизованное управление конфигурацией ОС и ПО](https://redos.red-soft.ru/base/redos-7_3/7_3-administation/7_3-remote-admin/7_3-puppet/)
-
-
-
-5.3 Ansible — это система с открытым исходным кодом для автоматизации ИТ-процессов, которая позволяет управлять конфигурациями серверов, развертывать приложения и оркестровать сложные рабочие процессы. Вместо ручного выполнения команд на каждом сервере, Ansible позволяет описывать желаемое состояние инфраструктуры в виде кода и автоматически применять его на множестве машин.
-* [2.9.14.3 Ansible - система автоматизации настройки и развертывания ПО](https://redos.red-soft.ru/base/redos-7_3/7_3-administation/7_3-remote-admin/7_3-ansible/)
-* [Ansible для людей: автоматизировал и выдохнул](https://habr.com/ru/articles/920742/)
-* [Ansible для начинающих](https://habr.com/ru/companies/slurm/articles/714000/)
-* [Автоматизируйте всё с помощью Ansible](https://habr.com/ru/companies/slurm/articles/738594/)
-* [Ansible для начинающих: инструкции и команды](https://practicum.yandex.ru/blog/ansible-sistema-upravleniya-serverami/)
-* [Прокачаться в работе с Ansible — подборка ресурсов](https://habr.com/ru/companies/vasexperts/articles/920670/)
-* [Архитектура приложения. Разбираем приложение Ansible на модули (A-services)](https://habr.com/ru/companies/pt/articles/954104/)
-* [44 совета по Ansible: рекомендации и Best Practices](https://habr.com/ru/companies/slurm/articles/725788/)
-
-
-
-5.4 Ansible Molecule — это фреймворк для разработки и тестирования ролей и других компонентов Ansible, который помогает создавать надежный и качественный код для автоматизации инфраструктуры. Он позволяет создавать изолированные тестовые среды в различных операционных системах, контейнерах или облачных платформах, чтобы проверить работоспособность ролей Ansible в разных сценариях и убедиться в их правильной работе и идемпотентности.
-* [Тестирование автоматизации Ansible с помощью Molecule Часть 1](https://habr.com/ru/companies/slurm/articles/711432/)
-* [Тестирование автоматизации Ansible с помощью Molecule Часть 2](https://habr.com/ru/companies/slurm/articles/713060/) 
-* [Molecule — тестируем роли Ansible](https://habr.com/ru/articles/437216/)
-* [Тестирование Ansible с использованием Molecule с Ansible в качестве верификатора](https://habr.com/ru/articles/527454/)
-
-
-
-5.5 HashiCorp Vagrant — это инструмент с открытым исходным кодом от HashiCorp, предназначенный для создания и управления виртуальными средами разработки. Vagrant позволяет разработчикам быстро создавать и настраивать одинаковые рабочие окружения, что решает проблему «у меня на машине работает», и делает рабочую среду более предсказуемой и соответствующей производственной.
-* [Что такое Vagrant: установка, запуск, использование}(https://ru.hexlet.io/blog/posts/vagrant)
-* [Знакомимся с Otto, наследником Vagrant](https://habr.com/ru/articles/268497/)
-* [Does anyone use HashiCorp Vagrant anymore?](https://www.reddit.com/r/devops/comments/p0icih/does_anyone_use_hashicorp_vagrant_anymore/)
-
-
-5.6 Terraform — это инструмент с открытым исходным кодом для автоматизации управления инфраструктурой в виде кода (IaC), позволяющий описывать и развертывать облачные и локальные ресурсы с помощью конфигурационных файлов на декларативном языке HCL (HashiCorp Configuration Language).
-* [Основы Terraform](https://habr.com/ru/companies/otus/articles/696694/)
-* [Terraform: от незнания к best practices](https://habr.com/ru/companies/nixys/articles/721404/)
-* [Terraform: поиск оптимального написания кода](https://habr.com/ru/articles/817839/)
-* [Три юзкейса Terraform, к реализации которых вам пора приступать](https://habr.com/ru/companies/timeweb/articles/825454/)
-* [DevOps Tutorials — Terraform: создаем виртуальный сервер в облаке](https://habr.com/ru/articles/937376/)
-* [Теория: Обзор Terraform](https://ru.hexlet.io/courses/terraform-basics/lessons/overview/theory_unit)
-* [Начало работы с Terraform](https://yandex.cloud/ru/docs/tutorials/infrastructure-management/terraform-quickstart)
-* [Terraform: как установить, настроить и использовать инструмент](https://practicum.yandex.ru/blog/nastroyka-i-ispolzovanie-terraform/)
-
-
-
-5.7  CDK8s — это фреймворк с открытым исходным кодом для генерации ресурсов Kubernetes. Основная идея cdk8s заключается в том, что с ним вместо Helm-шаблонов для управления ресурсами и приложениями в Kubernetes можно использовать привычные языки разработки: TypeScript, JavaScript, Python и Java.
-* [Обзор фреймворка cdk8s для «программирования» Kubernetes-манифестов](https://habr.com/ru/companies/flant/articles/577624/)
-* [Напишите свою инфраструктуру Kubernetes — как код Go](https://habr.com/ru/companies/ruvds/articles/680664/)
-
-
-5.8 Crossplane — это фреймворк с открытым исходным кодом для платформенной разработки на базе Kubernetes, который позволяет управлять облачной инфраструктурой (например, базами данных, кластерами и другими ресурсами) через стандартный Kubernetes API. Он работает по принципу «Infrastructure as Code» (инфраструктура как код), постоянно синхронизируя состояние облачных ресурсов с запрошенными конфигурациями, что обеспечивает высокую доступность и упрощает развертывание и управление инфраструктурой в мультиоблачных средах.
-* [Crossplane. Где встречаются Kubernetes и облака](https://habr.com/ru/companies/otus/articles/676082/)
-* [Преимущества Crossplane в 2025 году?](https://www.reddit.com/r/devops/comments/1ilmkrt/crossplane_selling_points_in_2025/?tl=ru)
-* [Установка Crossplane с поддержкой Yandex Cloud](https://yandex.cloud/ru/docs/managed-kubernetes/operations/applications/crossplane)
-* {Как управлять инфраструктурой в GitOps с помощью Crossplane](https://habr.com/ru/companies/kts/articles/726026/)
-* [Как зарабатывать больше, если знаешь Crossplane?](https://slurm.io/blog/tpost/yrki000z41-kak-zarabativat-bolshe-esli-znaesh-cross)
-
-
-
-
-5.9 Pulumi — это платформа "инфраструктура как код" (IaC) с открытым исходным кодом, которая позволяет управлять облачной инфраструктурой с помощью привычных языков программирования, таких как Python, TypeScript, Go и C#.
-* [Универсальное описание инфраструктуры на Pulumi. Раскатываемся в Kubernetes, AWS, GCP с одной конфигурацией](https://habr.com/ru/companies/otus/articles/674818/)
-* [Terraform уже не тот? Как Pulumi меняет правила игры в Infrastructure as Code](https://habr.com/ru/companies/okko/articles/908960/)
-* [Как зарабатывать больше, если знаешь Pulumi?](https://slurm.io/blog/tpost/nre0cpbxe1-kak-zarabativat-bolshe-esli-znaesh-pulum)
-* [Pulumi. Описание инфраструктуры языком программирования // занятие курса «Infrastructure as a code»](https://www.youtube.com/watch?v=6MXauTFoUhQ)
-
-## Хранение секретов и ключей / Secret Management
-Часть концепции Total Control: исключение человеческого фактора и «открытых» данных. Инструменты для автоматизированной передачи учетных данных внутри инфраструктуры, исключающие утечки в коде и конфигурациях.
-* HashiCorp Vault — промышленный стандарт для динамических секретов и шифрования.
-* sops (Secrets Operations) — шифрование файлов (YAML, JSON, ENV) для безопасного хранения в Git.
-* Sealed Secrets — специфическое решение для Kubernetes.
-* Cloud Secret Managers (AWS, Azure, Google) — нативные облачные хранилища.
+## Хранение секретов и ключей / Secret Management (SM)
+1. **Системы управления секретами / Secret Management Systems** — Динамическая генерация и шифрование.
+    * **HashiCorp Vault** — Индустриальный стандарт для управления секретами. [инфо](https://habr.com)
+    * **sops** — Шифрование файлов (YAML, JSON, ENV) для хранения в Git. [инфо](https://habr.com)
+    * **Sealed Secrets** — Решение для безопасного хранения секретов K8s в публичных репозиториях. [инфо](https://habr.com)
 
 ## Управление привилегированным доступом / Privileged Access Management (PAM)
-Часть концепции Total Control: полный аудит и иерархия доступа. Инструменты для контроля действий администраторов, записи сессий и реализации принципа «нулевого доверия» (Zero Trust) при доступе к серверам и базам данных.
-* Teleport — современная замена SSH/RDP с записью сессий и доступом через SSO.
-* Apache Guacamole — клиентский доступ к рабочим столам через браузер (без прямого SSH-соединения).
-* HashiCorp Boundary — гранулярный доступ к ресурсам на основе личности, а не сетевых адресов.
-* FreeIPA / Keycloak — централизованное управление цифровыми личностями и правами.
-
-
- ## Управление идентификацией и доступом / Identity and Access Management (IAM)
-Часть концепции Total Control: управление цифровыми личностями и правами доступа. Единая точка входа (SSO) и централизованная база пользователей для всех сервисов инфраструктуры.
-
-* Keycloak — «золотой стандарт» для энтерпрайза. Позволяет настроить SSO (Single Sign-On), поддерживает протоколы OpenID Connect, SAML и OAuth 2.0. Идеален для глубокой интеграции с корпоративными системами.
- 
-* Authentik — современная и более легкая альтернатива Keycloak. Очень популярен в DevOps-среде за счет простоты деплоя через Docker и встроенного функционала управления доступом к приложениям (Outpost).
- 
-* Zitadel — облачно-ориентированное решение на Go. Отличается отличной поддержкой мультитенантности (когда нужно изолировать разные группы пользователей или клиентов внутри одной системы).
- 
-* FreeIPA — «Active Directory для Linux». Если тебе нужно управлять не просто входом в веб-приложения, а правами пользователей на тысячах Linux-серверов, SSH-ключами и политиками sudo — это твой выбор.
- 
-* LLDAP (Lightweight LDAP) — если FreeIPA кажется слишком громоздким. Это максимально упрощенный и быстрый LDAP-сервер для маленьких команд, где нужно просто хранить список пользователей и их пароли.
- 
-* Authelia — минималистичный «шлюз» аутентификации. Идеально подходит, если нужно быстро добавить 2FA (двухфакторную проверку) перед простыми веб-сервисами, которые сами этого не умеют. 
-
-
-
-## Базы данных 
-6. База данных (БД) — это упорядоченное электронное хранилище информации, позволяющее быстро и безопасно собирать, хранить, управлять и анализировать большие объемы данных. Системы управления базами данных (СУБД) — это программы, которые используются для работы с базами данных, а для извлечения информации применяются языки запросов, например, SQL.
-
-6.1. ClickHouse — это высокопроизводительная столбцовая система управления базами данных (СУБД) с открытым исходным кодом, предназначенная для онлайн-аналитической обработки (OLAP) больших данных в режиме реального времени. Изначально разработанная компанией Яндекс для анализа данных Яндекс.Метрики, она стала популярным инструментом для веб-аналитики, маркетинговых отчетов, обработки логов и других задач, требующих быстрого анализа больших объемов информации
-* [ClickHouse: Передовой инструмент для оперативной обработки данных](https://habr.com/ru/companies/otus/articles/773174/)
-* [Погружение в ClickHouse: делаем первые и успешные шаги](https://habr.com/ru/articles/901018/)
-* [Как я вкатывался в Clickhouse](https://habr.com/ru/articles/982130/)
-* [Дом, милый дом: нюансы работы с ClickHouse. Часть 1](https://habr.com/ru/companies/nixys/articles/801029/)
-* [Дом, милый дом: нюансы работы с ClickHouse. Часть 2, репликация](https://habr.com/ru/companies/nixys/articles/826850/)
-* [Инфраструктура для Data-Engineer ClickHouse](https://habr.com/ru/articles/842818/)
-* [ClickHouse как DWH: Производительность без боли и ловушки merge-таблиц](https://habr.com/ru/articles/912454/)
-
-
-
-   
-6.2 PostgreSQL — это бесплатная объектно-реляционная система управления базами данных (РСУБД) с открытым исходным кодом, известная своей надежностью, гибкостью и производительностью. Она поддерживает стандарт SQL, позволяя создавать и управлять данными в виде таблиц, но также включает объектно-ориентированные возможности, такие как пользовательские типы данных и наследование.
-* [PostgreSQL: лучшие статьи на Хабр](https://otus.ru/journal/postgresql-luchshie-stati-na-habr/)
-* [Как мы сократили объем данных в 10 раз, не повредив пользовательскому опыту, или переезд Postgres → ClickHouse](https://habr.com/ru/companies/kts/articles/988510/)   
-
-
-6.3 MongoDB — это нереляционная (NoSQL) документоориентированная база данных с открытым исходным кодом, которая хранит данные в виде гибких JSON-подобных документов вместо таблиц и строк, как в реляционных базах данных. Это обеспечивает гибкость схемы данных, высокую производительность, масштабируемость и простоту работы с разнородной информацией, что делает ее популярной для веб-приложений, аналитики больших данных и мобильных приложений. 
-* [Готовимся к собеседованию: 82 вопроса по MongoDB](https://habr.com/ru/companies/otus/articles/768342/)
-* [Подумываете об использовании MongoDB?](https://habr.com/ru/companies/otus/articles/565700/)
-* [Топ-5 инструментов для MongoDB в 2022 году](https://habr.com/ru/companies/otus/articles/666188/)
-* [MongoDB vs PostgreSQL. Сравнение документо-ориентированной и реляционной базы данных](https://habr.com/ru/companies/amvera/articles/757534/)
-* [Работа с MongoDB: читаем на Хабр](https://otus.ru/journal/rabota-s-mongodb-chitaem-na-habr/)
-
-
-
-## Брокер сообщений
-7. Брокер сообщений — это программный посредник, который принимает сообщения от приложений-отправителей, сохраняет их и затем передаёт приложениям-получателям, обеспечивая асинхронное и надёжное взаимодействие между ними. Он разгружает сервисы от необходимости знать о местонахождении друг друга, позволяет обрабатывать сообщения в удобное время и поддерживает отказоустойчивость системы за счёт буферизации и гарантированной доставки.
-* [Брокеры сообщений, или Как происходит взаимодействие в рамках распределённой инфраструктуры](https://habr.com/ru/companies/sberbank/articles/669456/)
-* [Брокеры сообщений и их использование в микросервисной архитектуре](https://habr.com/ru/sandbox/251358/)
-* [Практическое руководство по выбору брокера сообщений](https://habr.com/ru/companies/otus/articles/901708/)
-* [Брокер сообщений своими руками](https://habr.com/ru/articles/903302/)
-
- 
-7.1 RabbitMQ — это посредник для обмена данными между приложениями. Этот протокол включает издателей, получателей, очереди, обменники и ключи маршрутизации. RabbitMQ важен для создания распределенных систем, таких как микросервисы.
-* [RabbitMQ: что это такое и как работает](https://blog.skillfactory.ru/rabbitmq-chto-eto-takoe-i-kak-rabotaet/)
-* [Лучшие практики для надёжной работы с RabbitMQ](https://habr.com/ru/companies/tochka/articles/799949/)
-* [Что такое RabbitMQ? Топология, объекты и атрибуты](https://systems.education/what-is-rabbitmq)
-* [Когда и зачем нужен RabbitMQ](https://habr.com/ru/companies/slurm/articles/684412/)
-* [RabbitMQ: терминология и базовые сущности](https://habr.com/ru/companies/slurm/articles/703060/)
-
-
-
-7.2 Apache Kafka — это брокер сообщений, с открытым исходным кодом, предназначенная для работы с большими объемами данных в режиме реального времени. Она позволяет приложениям надежно и эффективно обмениваться данными, обрабатывая их по мере генерации, и имеет высокую производительность, масштабируемость и отказоустойчивость.
-* [Kafka для начинающих: откуда такой спрос и зачем нужна эта технология](https://habr.com/ru/articles/957824/)
-* [Изучаем Kafka — Уровень 1](https://habr.com/ru/articles/916726/)
-* [Kafka за 20 минут. Ментальная модель и как с ней работать](https://habr.com/ru/companies/kuper/articles/738634/)
-* [Apache Kafka: основы технологии](https://habr.com/ru/companies/slurm/articles/550934/)
-* [Kafka для начинающих: работа с оффсетами на практике](https://habr.com/ru/articles/965218/)
-* [Лучший Гайд по Kafka для Начинающих За 1 Час](https://www.youtube.com/watch?v=hbseyn-CfXY)
-
-
-
-
-
-## Облачные вычисления
-8. Облачные вычисления — это модель предоставления вычислительных ресурсов (серверов, хранилищ, программного обеспечения, сетей, аналитики и др.) по требованию через Интернет («облако»), позволяющая компаниям и частным пользователям использовать эти сервисы по подписке вместо владения и обслуживания собственной физической ИТ-инфраструктуры.
-
-8.1 Amazon Web Services (AWS)
-* [Базовая инфраструктура в облаках на примере AWS // Курс «Cloud Solution Architecture»](https://www.youtube.com/watch?v=hNKskKNWNKQ)
-
-
-
-8.2 Microsoft Azure
-* [Azure понятным языком [Шпаргалка]](https://habr.com/ru/companies/microsoft/articles/320544/)
-
-
-8.3 Google Cloud Platform (GCP)
-* [GCP: Разбор вычислительного стека Google Cloud Platform](https://habr.com/ru/companies/otus/articles/467749/)
-
-
-
-## Система управления версиями
-9. Система управления версиями (СУВ или VCS) — это программное обеспечение, которое отслеживает и управляет изменениями в файлах проекта с течением времени, позволяя сохранять разные версии документов, откатываться к предыдущим состояниям, а также работать совместно над проектом.
-
-9.1 Git — это распределённая система управления версиями, инструмент для отслеживания изменений в файлах и совместной работы над проектами, особенно в разработке программного обеспечения. Он позволяет разработчикам сохранять историю всех версий проекта, возвращаться к предыдущим состояниям, а также координировать свои усилия, избегая конфликтов и обеспечивая эффективное управление рабочим процессом
-* [Git для новичков (часть 1)](https://habr.com/ru/articles/541258/) 
-* [Git для новичков (часть 2)](https://habr.com/ru/articles/542616/)
-* [Гид по Git — глазами бывшего джуна](https://habr.com/ru/companies/surfstudio/articles/973304/)
-* [15 команд Git, которые покрывают 90% повседневной работы разработчика](https://habr.com/ru/articles/905658/)
-* [Что такое Git и почему он стал стандартом разработки](https://habr.com/ru/articles/959760/)
-* [Git. Коротко о главном](https://habr.com/ru/articles/588801/)
-
-
-   
-9.2 Bitbucket — это облачный сервис хостинга кода, разработанный компанией Atlassian, который позволяет командам разработчиков хранить, управлять и совместно работать над проектами, используя систему контроля версий Git. Он предлагает централизованное пространство для размещения репозиториев, отслеживания изменений в коде и интеграции с другими инструментами, такими как Jira и Trello, что делает его популярным решением для профессиональных команд.
-* [Bitbucket: что это, особенности, сравнение с GitLab](https://itglobal.com/ru-ru/company/glossary/bitbucket/)
-* [Bitbucket: Создание приватного репозитория](https://habr.com/ru/sandbox/37865/)
-* [6 секретов Bitbucket](https://habr.com/ru/articles/278547/)
-* [Bitbucket](https://blog.skillfactory.ru/glossary/bitbucket/)
-
-
-## Резервное копирование и восстановление / Backup & Recovery
-«Точка восстановления» инфраструктуры. Инструменты для обеспечения сохранности данных, дедупликации архивов и гарантированного восстановления сервисов после сбоев. Ordnung в данных — это их доступность в любой момент времени.
-1. Резервное копирование серверов и виртуализации (Infrastructure Backup)
-   * BorgBackup (Borg) — Профессиональный инструмент с эффективной дедупликацией и шифрованием. (Гайд, Докс)
-   * Restic — Быстрый кроссплатформенный инструмент с нативной поддержкой облаков (S3, Azure, Google). (Обзор, Докс)
-   * Proxmox Backup Server (PBS) — Корпоративное решение для бэкапа ВМ и контейнеров Proxmox с проверкой целостности. (Гайд, Докс)
-   * Veeam Backup & Replication — Индустриальный стандарт для защиты сред VMware и Hyper-V. (Инфо, Гайд)
-2. Бэкап баз данных и приложений (Database & App Backup)
-   * Percona XtraBackup — Инструмент для «горячего» бэкапа MySQL/MariaDB без остановки базы. (Гайд, Докс)
-   * Barman (Backup and Recovery Manager) — Стандарт для администрирования и бэкапа PostgreSQL в крупных сетях. (Гайд, Сайт)
-   * Velero — Резервное копирование ресурсов и томов внутри кластеров Kubernetes. (Гайд, Докс)
-3. Синхронизация и передача данных (Data Transfer & Sync)
-   * Rclone — «Швейцарский нож» для синхронизации с облачными хранилищами (более 40 провайдеров). (Гайд, Докс)
-   * Syncthing — Безопасная децентрализованная синхронизация файлов между устройствами (P2P). (Гайд, Сайт)
-   * Borgmatic — Конфигурация бэкапов в виде кода (IaC) для автоматизации Borg. (Гайд)
-   * Rsync — Классическая утилита для быстрой инкрементальной передачи данных по SSH. (Инфо)
-
-
-## Языки программирования 
-11. Язык программирования — это формальная знаковая система, предназначенная для написания инструкций (компьютерных программ), которые выполняет ЭВМ. Он служит мостом между человеком и машиной, определяя строгий синтаксис (правила написания) и семантику (смысл команд) для создания алгоритмов. 
-
-
-
-11.1 Язык Си (C) — это процедурный язык программирования общего назначения, разработанный Деннисом Ритчи в начале 1970-х годов. Он компилируемый, статически типизированный, отличается эффективностью, гибкостью и низкоуровневым доступом к памяти. Си широко используется для системного программирования, драйверов и встроенных систем.   
-* [Язык программирования C. Твой путь начинается здесь, самурай](https://habr.com/ru/articles/928410/)
-* [Справочник по языку C](https://learn.microsoft.com/ru-ru/cpp/c-language/c-language-reference?view=msvc-170)
-* [Руководство по языку программирования Си](https://metanit.com/c/tutorial/)
-
-
-
-11.2 C++ — это компилируемый, статически типизированный язык программирования общего назначения, разработанный как расширение языка Си (C) с поддержкой объектно-ориентированного программирования (ООП), обобщенного программирования и управления памятью. Он сочетает высокоуровневые абстракции с низкоуровневым доступом к ресурсам, обеспечивая высокую производительность. 
-* [Справочник по языку C++](https://learn.microsoft.com/ru-ru/cpp/cpp/cpp-language-reference?view=msvc-170)
-* [Руководство по языку программирования C++](https://metanit.com/cpp/tutorial/)
-* [C++: описание языка и его основы](https://otus.ru/journal/c-opisanie-yazyka-i-ego-osnovy/)
-* [Уроки С++](https://ravesli.com/uroki-cpp/)
-
-
-
-11.3 Java — это широко распространенный, объектно-ориентированный язык программирования высокого уровня, созданный Sun Microsystems в 1995 году (сейчас принадлежит Oracle). Его ключевая особенность — платформанезависимость: код компилируется в байт-код и запускается на любой ОС через виртуальную машину Java (JVM) по принципу «Напиши один раз, запускай везде» (Write Once, Run Anywhere). 
-* [Руководство по языку программирования Java](https://metanit.com/java/tutorial/)
-* [Всё, что нужно знать новичку о Java](https://practicum.yandex.ru/blog/chto-takoe-java-dlya-nachinayuschih/)
-* [Java: описание, особенности и области использования](https://otus.ru/journal/java-opisanie-osobennosti-i-oblasti-ispolzovaniya/) 
-* [Язык программирования Java: что нужно знать новичку](https://ru.hexlet.io/blog/posts/yazyk-programmirovaniya-java-osobennosti-populyarnost-situatsiya-na-rynke-truda)
-* [10 главных конструкций языка Java](https://thecode.media/10-java/)
-* [10 лучших Java-фреймворков](https://scand.com/ru/company/blog/top-java-frameworks/)
-
-
-
-11.4 JavaScript (JS) — это высокоуровневый, интерпретируемый язык программирования, являющийся одной из трех базовых технологий веб-разработки (наряду с HTML и CSS). Он используется для создания интерактивных, динамических веб-страниц, обработки действий пользователя (клики, анимации) и работы на стороне сервера (Node.js). 
-* [JavaScript для начинающих. Урок 1](https://habr.com/ru/sandbox/170986/)
-* [JavaScript Frameworks: описание и особенности](https://otus.ru/journal/javascript-frameworks-opisanie-i-osobennosti/)
-* [JavaScript-фреймворки и библиотеки, на которые стоит обратить внимание в 2025 году](https://habr.com/ru/companies/ru_mts/articles/864500/)
-* [Лонгрид о JavaScript](https://habr.com/ru/articles/803137/)
-* [JavaScript повсюду или почему веб-технологии захватили мир](https://habr.com/ru/articles/756064/)
-* [Современный учебник JavaScript](https://learn.javascript.ru/)
-
-11.5 TypeScript
-* [Чистый код на TypeScript: практические советы](https://habr.com/ru/articles/948488/)
-* [Изучение TypeScript — Полное руководство для начинающих. Часть 1 — Введение и примитивные типы данных](https://habr.com/ru/articles/663964/))
-
-11.6 Python — высокоуровневый язык программирования общего назначения, созданный Гвидо ван Россумом в 1991 году. Он отличается простым, читаемым синтаксисом, использованием отступов для структуры кода и универсальностью. Python активно используется в веб-разработке (Django), анализе данных, машинном обучении, автоматизации (скриптах) и ИИ. 
-* [Что же такое Django?](https://habr.com/ru/articles/747234/)
-* [Что бы я хотел знать когда начинал изучать Django? — очень общий взгляд](https://habr.com/ru/articles/508100/)
-* [Быстрый Django: всё, что нужно знать о производительности](https://habr.com/ru/articles/942296/)
-* [Почему я рекомендую Ruby on Rails новичкам в 2024 году?](https://habr.com/ru/articles/794476/)
-* [Ruby on Rails шаг за шагом. #1 Теория](https://habr.com/ru/articles/49700/)
-* [Курс по Ruby+Rails. Часть 1. Императивное программирование](https://habr.com/ru/companies/evrone/articles/689076/)
-* [Знакомство с FastAPI](https://habr.com/ru/articles/488468/)
-* [FastAPI: Хватит писать всё в main.py. Гайд по нормальной структуре для новичков](https://habr.com/ru/articles/970798/)
-* [FastAPI: 5 практичных архитектурных решений, о которых я пожалел, что не узнал раньше](https://habr-articles.rssing.com/chan-76549191/article37998.html)
-* [Плюсы и минусы FastAPI в 2023](https://habr.com/ru/articles/748552/)
-* [Разработка на Python: ТОП-9 статей на Хабр](https://otus.ru/journal/razrabotka-na-python-top-9-statej-na-habr/)
-* [Как я в 35 пытался стать Python-разработчиком, и почему у меня [пока] ничего не вышло](https://habr.com/ru/articles/832186/)
-* [Сказ о Python или почему его лучше не выбирать новичкам](https://habr.com/ru/articles/808195/)
-* [Основы языка программирования Python за 10 минут](https://habr.com/ru/articles/709102/)
-
-
-1.6. IP-телефония (VoIP) — это современная технология передачи голосовых и видеосообщений через интернет-протокол (IP), заменяющая традиционные аналоговые линии.
-    * [IP-телефония. Виды VoIP устройств, обзор плюсов-минусов. Что выбрать?](https://habr.com/ru/articles/493528/)
-    * [Основы IP-телефонии, базовые принципы, термины и протоколы](https://habr.com/ru/articles/183152/)
-    * [Основы IP-телефонии, базовые принципы, термины и протоколы](https://habr.com/ru/articles/183152/)
-    * [Что такое IP-телефония и как она работает](https://thecode.media/ip-telephony/)
-    * [IP-телефония: что это и как работает](https://selectel.ru/blog/ip-telephony/)
-    * [Базовые принципы IP - телефония](https://wiki.merionet.ru/articles/ip-telephony)
-    * [Как устроена IP-телефония: объясняем на пальцах](https://www.youtube.com/watch?v=nMeSkBlH3Ek)
-    * [Что такое IP Телефония // Проводные телефоны возвращаются?](https://www.youtube.com/watch?v=hYKynt1i_eE)
-    * [Сравнение программ для IP-телефонии](https://ru.wikipedia.org/wiki/Сравнение_программ_для_IP-телефонии)
-
-
-     -  1.6.1. Asterisk (Астериск) — это популярная программная АТС с открытым исходным кодом, предназначенная для создания систем IP-телефонии (VoIP) на базе ОС Linux, BSD и других. Она превращает обычный компьютер в мощную телефонную станцию с поддержкой IVR, голосовой почты, конференций и записи звонков.
-    - [Asterisk](https://ru.wikipedia.org/wiki/Asterisk)
-    - [База знаний](http://www.asterisk.ru/knowledgebase/books)
-    - [«Астериск - будущее телефонии».](http://www.asterisk.ru/store/files/Asterisk_-_Definitive_guide_4th.pdf)
-    - [Asterisk: Полное руководство, 5 издание](https://denis.elib.ru/wp-content/uploads/2021/01/Asterisk-The-Definitive-Guide.pdf)
-    - [Asterisk - настройка с нуля](https://wiki.merionet.ru/articles/asterisk-nastrojka-s-nulya)
-    - [Asterisk Managment Interface (AMI), Часть 1](https://habr.com/ru/articles/64105/)
-    1.6.2. FreePBX — это популярный веб-интерфейс (GUI) с открытым исходным кодом для управления IP-АТС Asterisk. Он позволяет настраивать телефонные системы, маршрутизацию звонков, IVR (голосовое меню) и SIP-аккаунты через браузер, исключая необходимость правки конфигурационных файлов вручную. Часто поставляется в составе FreePBX Distro (ОС+Asterisk+GUI). 
-    - [r/freepbx](https://www.reddit.com/r/freepbx/)
-    - [Руководство администратора FreePBX на русском языке](https://wiki.merionet.ru/articles/rukovodstvo-administratora-freepbx-na-russkom-yazyke)
-    - [FreePBX: первые шаги по граблям](https://habr.com/ru/companies/slurm/articles/313078/)
-    - [Простая установка Asterisk + FreePBX для начинающих](https://habr.com/ru/articles/171163/)
-    - [Raspberry Pi + FreePBX(asterisk) + Mikrotik = АТС мини](https://habr.com/ru/articles/550734/)
-    - [Сложности установки сервера IP-телефонии FreePBX на неттоп с процессором AMD](https://habr.com/ru/articles/593519/)
-    - [Разбираемся с FreePBX и интегрируем его с Битрикс24 и не только](https://habr.com/ru/articles/518450/)     
-    - [Аналоги FreePBX: 11 похожих сервисов для замены](https://exolve.ru/blog/analogues-freepbx-11-services-to-replace/)
-    
-    1.6.3 Issabel PBX — это бесплатная коммуникационная платформа с открытым исходным кодом на базе Asterisk, предназначенная для создания IP-АТС, VoIP-серверов и контакт-центров. Она объединяет телефонию, факс, чат и CRM-интеграцию в одном веб-интерфейсе, предоставляя функции IVR, очередей, записи звонков и видеоконференций. 
-    - [Issabel PBX - установка платформы](https://wiki.merionet.ru/articles/issabel-pbx-ustanovka-platformy)
-    - [Возможности сетевых настроек в дистрибутиве IssabelPBX.](https://voxlink.ru/kb/legacy-pbx-integration/vozmozhnosti-setevyh-nastroek-v-distributive-issabelpbx/)
-    - [Внедрение IP телефонии на базе Issabel. Часть 1](https://www.youtube.com/watch?v=8mqrVAe27eM)
-    - [Использование встроенной безопасности IssabelPBX](https://voxlink.ru/kb/integraciya-s-crm/ispolzovanie-vstroennoj-bezopasnosti-issabelpbx/)
-
-    1.6.4 VitalPBX — это современная, функциональная IP-АТС на базе Asterisk, предназначенная для создания корпоративных систем связи. Она сочетает возможности Open Source-решений с удобным графическим интерфейсом, обеспечивая работу IVR, запись разговоров, видеозвонки и другие функции, что делает её гибкой платформой для бизнеса. 
-    - [Базовый обзор VitalPbx](https://voxlink.ru/kb/asterisk-installation/bazovyi-obzor-vitalpbx)
-    - [VitalPBX tips & tricks](https://voxlink.ru/kb/asterisk-installation/vitalpbx-tips-tricks/)
-
-    1.6.5 Incredible PBX — это мощная, безопасная и бесплатная IP-АТС на базе открытого исходного кода Asterisk и FreePBX, предназначенная для создания корпоративных телефонных сетей. Она объединяет функции VoIP, включая облачную интеграцию (Google Voice), повышенную защиту и удобный веб-интерфейс. 
-    - [«Невероятная АТС» для RasPBX](https://www.rlocman.ru/news/new.html?di=150832&srsltid=AfmBOor1l9gyi8SiAHi32X5dJC7vKvm0-judCmxE-VU1jnjeGPMXFEuR) 
-    - [Incredible PBX Wiki | HomePage](https://wiki.incrediblepbx.com/HomePage) 
-
-
-
-
+1. **Контроль доступа и запись сессий / Access Control and Session Recording** — Принцип Zero Trust.
+    * **Teleport** — Замена SSH/RDP с поддержкой SSO и автоматической записью сессий. [инфо](https://habr.com)
+    * **Apache Guacamole** — Доступ к удаленным рабочим столам через браузер. [инфо](https://habr.com)
+    * **HashiCorp Boundary** — Доступ к ресурсам на основе личности без видимости сети. [инфо](https://habr.com)
+
+## Управление идентификацией и доступом / Identity and Access Management (IAM)
+1. **Платформы аутентификации и SSO / Authentication and SSO Platforms** — Единая точка входа.
+    * **Keycloak** — Полнофункциональная система управления доступом (OIDC, SAML). [инфо](https://habr.com)
+    * **Authentik** — Универсальная платформа аутентификации с защитой приложений. [инфо](https://habr.com)
+    * **Authelia** — Минималистичный портал аутентификации с поддержкой 2FA. [инфо](https://habr.com)
+2. **Службы каталогов / Directory Services** — Иерархические данные о пользователях.
+    * **FreeIPA** — Интегрированное решение для управления идентификацией в Linux-средах. [инфо](https://habr.com)
+    * **LLDAP** — Упрощенная реализация LDAP для небольших команд. [инфо](https://habr.com)
+
+## Базы данных / Databases (DB)
+1. **Реляционные СУБД / SQL Databases** — Надежность и целостность ACID.
+    * **PostgreSQL** — Мощная реляционная система с поддержкой сложных типов данных. [инфо](https://otus.ru)
+2. **Аналитические СУБД / OLAP Databases** — Обработка больших массивов данных.
+    * **ClickHouse** — Столбцовая СУБД для онлайн-анализа в реальном времени. [инфо](https://habr.com)
+3. **NoSQL и In-memory СУБД / NoSQL and In-memory Databases** — Гибкость и скорость.
+    * **MongoDB** — База данных, хранящая информацию в виде JSON-подобных документов. [инфо](https://habr.com)
+    * **Redis** — Сверхбыстрое хранилище структур данных в оперативной памяти. [инфо](https://habr.com)
+
+## Брокеры сообщений и шины данных / Message Brokers and Streaming (MB)
+1. **Очереди и потоки / Queues and Event Streaming** — Асинхронный обмен данными.
+    * **RabbitMQ** — Брокер сообщений на базе AMQP для гибкой маршрутизации. [инфо](https://blog.skillfactory.ru)
+    * **Apache Kafka** — Платформа потоковой передачи данных для High Load систем. [инфо](https://habr.com)
+    * **NATS** — Быстрая система обмена сообщениями для облачных и Edge вычислений. [инфо](https://habr.com)
+
+## Мониторинг и наблюдаемость / Monitoring & Observability (MO)
+1. **Системы мониторинга и метрик / Monitoring Systems and Metrics** — Числовые временные ряды.
+    * **Zabbix** — Универсальная система мониторинга корпоративного класса. [инфо](https://habr.com)
+    * **Prometheus** — Индустриальный стандарт мониторинга (Pull-модель). [инфо](https://habr.com)
+    * **VictoriaMetrics** — Высокопроизводительная СУБД для хранения метрик. [инфо](https://habr.com)
+    * **Node Exporter** — Агент для выгрузки аппаратных метрик ОС. [инфо](https://habr.com)
+    * **Process Exporter** — Агент для детальной статистики конкретных процессов. [инфо](https://habr.com)
+
+## Централизованное логирование / Centralized Logging (CL)
+1. **Агенты сбора и доставки / Log Shippers (Agents)** — Захват и транспортировка логов.
+    * **Filebeat** — Легковесный агент для передачи текстовых журналов. [инфо](https://habr.com)
+    * **Metricbeat** — Агент для передачи системных метрик в Elasticsearch. [инфо](https://selectel.ru)
+    * **Promtail** — Агент для передачи логов в Grafana Loki. [инфо](https://habr.com)
+2. **Агрегация и маршрутизация / Aggregators and Processors** — Трансформация потоков.
+    * **Vector** — Инструмент на базе **Rust** для построения пайплайнов данных. [инфо](https://habr.com)
+    * **Fluentd** — Универсальный агрегатор с огромной экосистемой плагинов. [инфо](https://habr.com)
+    * **Logstash** — Компонент для динамической обработки данных в стеке ELK. [инфо](https://selectel.ru)
+3. **Хранение и поиск / Storage and Search Engines** — Долгосрочный анализ.
+    * **Elasticsearch** — Распределенная поисковая система, ядро стеков ELK/EFK. [инфо](https://habr.com)
+    * **Grafana Loki** — Хранилище логов, оптимизированное для работы с метаданными. [инфо](https://habr.com)
+
+## Визуализация и оповещение / Visualization and Alerting (VA)
+1. **Интерфейсы и алертинг / Dashboards and Alerting** — Единая панель управления.
+    * **Grafana** — Универсальный инструмент визуализации (Metrics, Logs, Traces). [инфо](https://habr.com)
+    * **Kibana** — Визуализация и навигация в стеке Elasticsearch. [инфо](https://habr.com)
+    * **Alertmanager** — Обработка и маршрутизация уведомлений Prometheus. [инфо](https://habr.com)
+    * **Jaeger** — Система трассировки запросов в микросервисах. [инфо](https://habr.com)
+
+## Сетевая связность и анализ / Network Analysis & Connectivity (NAC)
+1. **Анализ и диагностика / Analysis and Diagnostics** — Глубокая инспекция трафика.
+    * **Wireshark** — Графический анализатор сетевых протоколов. [инфо](https://habr.com)
+    * **Tcpdump** — Консольная утилита для перехвата сетевых пакетов. [инфо](https://habr.com)
+    * **MTR** — Диагностика маршрутов и потерь пакетов. [инфо](https://habr.com)
+2. **Защита и связность / Security and Connectivity** — Туннелирование и прокси.
+    * **WireGuard** — Современный высокоскоростной протокол VPN. [инфо](https://habr.com)
+    * **HAProxy** — Высокопроизводительный балансировщик нагрузки (TCP/HTTP). [инфо](https://habr.com)
+
+## Системы управления конфигурациями и IaC / Configuration Management and IaC (CM)
+1. **Автоматизация / Automation** — Настройка ОС и приложений.
+    * **Ansible** — Управление конфигурациями без агентов (YAML). [инфо](https://habr.com)
+    * **Chef** — Платформа автоматизации на базе Ruby. [инфо](https://habr.com)
+2. **Инфраструктура как код / IaC** — Создание облачных ресурсов.
+    * **Terraform** — Универсальная платформа для создания инфраструктуры. [инфо](https://habr.com)
+    * **Pulumi** — Облачная IaC на стандартных языках программирования. [инфо](https://habr.com)
+
+## IP-телефония и связь / IP-Telephony and VoIP (IPT)
+1. **Коммуникации / Communication Platforms** — Серверные АТС.
+    * **Asterisk** — Ведущая программная АТС с открытым кодом. [инфо](https://habr.com)
+    * **FreePBX** — Графический интерфейс для управления Asterisk. [инфо](https://habr.com)
+    * **Issabel PBX** — Платформа унифицированных коммуникаций. [инфо](https://habr.com)
+    * **VitalPBX** — Современная система связи на базе Asterisk. [инфо](https://habr.com)
+    * **Incredible PBX** — Безопасная сборка на базе Asterisk «из коробки». [инфо](https://habr.com)
+
+## Почтовые серверы и клиенты / Email Infrastructure and Clients (ES)
+1. **Серверный стек / Mail Servers** — Маршрутизация и хранение.
+    * **Postfix** — Классический и производительный агент передачи почты (MTA). [инфо](https://habr.com)
+    * **Dovecot** — Безопасный сервер для доступа к почте по IMAP/POP3. [инфо](https://habr.com)
+2. **Клиентское ПО / Desktop Clients** — Работа с почтой на десктопе.
+    * **Thunderbird** — Мощный кроссплатформенный клиент с поддержкой OpenPGP. [инфо](https://habr.com)
+    * **Claws Mail** — Легковесный и быстрый почтовый клиент. [инфо](https://habr.com)
+
+## Резервное копирование и восстановление / Backup and Recovery (BR)
+1. **Защита данных / Data Protection** — Резервное копирование и снимки.
+    * **BorgBackup** — Дедупликация и шифрование архивов. [инфо](https://habr.com)
+    * **Restic** — Быстрый бэкап с нативной поддержкой S3. [инфо](https://habr.com)
+    * **ZFS Snapshots** — Мгновенные снимки файловой системы в FreeBSD/Linux. [инфо](https://habr.com)
+    * **MinIO** — S3-совместимое объектное хранилище для бэкапов. [инфо](https://habr.com)
+
+## Языки программирования / Programming Languages (PL)
+1. **Системные / System Languages**
+    * **C++** — Язык для разработки высокопроизводительных систем. [инфо](https://habr.com)
+    * **C** — Стандарт системного программирования Unix. [инфо](https://habr.com)
+    * **Rust** — Язык с гарантией безопасности памяти. [инфо](https://habr.com)
+2. **Инфраструктурные / Cloud and App Languages**
+    * **Go** — Стандарт облачной инфраструктуры (K8s, Docker). [инфо](https://habr.com)
+    * **Python** — Универсальный язык автоматизации и анализа. [инфо](https://habr.com)
+
+## Инструменты разработки / Developer Tools (DevTools)
+1. **Компиляторы и отладка / Compilers and Debugging**
+    * **GCC** — Основной набор компиляторов для GNU/Linux. [инфо](https://habr.com)
+    * **Clang** — Компилятор C/C++ из проекта LLVM. [инфо](https://habr.com)
+    * **GDB** — Универсальный системный отладчик. [инфо](https://habr.com)
+    * **Strace** — Мониторинг системных вызовов в Linux. [инфо](https://habr.com)
+2. **Редакторы / Editors**
+    * **Vim** — Модальный текстовый редактор для терминала. [инфо](https://habr.com)
+    * **VS Code** — Расширяемый редактор кода от Microsoft. [инфо](https://habr.com)
