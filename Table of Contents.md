@@ -15,42 +15,48 @@
 - [Языки программирования](#языки-программирования)
 
 
-1. Лицензирование и Свобода / Licensing & Free Software
-Это критически важный раздел для тех, кто хочет понимать «правила игры» Open Source. Коллеги часто путают «бесплатно» и «свободно».
-   * GNU GPL (General Public License) — «Вирусная» свобода. Обязывает производные работы также быть открытыми. (Инфо)
-   * MIT / Apache 2.0 — Пермиссивные лицензии. Разрешают всё, включая закрытие кода в коммерческих целях. (Сравнение)
-   * Copyleft vs Copyright — Разъяснение концепции «авторского права наоборот». (Статья)
+## Лицензирование и Свобода / Licensing and Free Software (LFS)
+
+1. **Типы открытых лицензий и концепции / Open License Types and Concepts** — Фундаментальные правила использования, модификации и распространения свободного ПО.
+    * **GNU GPL (General Public License)** — «Вирусная» свобода, обязывающая производные работы также оставаться открытыми.
+    * **MIT / Apache 2.0** — Пермиссивные лицензии, разрешающие любое использование, включая закрытие кода в коммерческих целях.
+    * **Copyleft vs Copyright** — Разъяснение концепции «авторского права наоборот» в противовес традиционному авторскому праву.
+
+## Операционные системы / Operating Systems (OS)
+
+1. **Unix-подобные системы и ядра / Unix-like Systems and Kernels** — Выбор системного окружения, определяющий стабильность, безопасность и производительность всей вертикали сервисов.
+    * **GNU/Linux** — Основная рабочая среда с фокусом на архитектурных особенностях различных дистрибутивов.
+        * **Debian / Ubuntu** — Индустриальный стандарт стабильности и широкой поддержки сообщества.
+        * **Arch Linux** — Система для глубокого понимания внутренних механизмов ОС и контроля каждого компонента.
+        * **Alpine Linux** — Минималистичная ОС (5МБ), оптимизированная для использования в качестве базы Docker-контейнеров.
+    * **BSD Family** — Прямые наследники Unix с акцентом на легендарный сетевой стек и чистоту системного кода.
+        * **FreeBSD** — Высокопроизводительная система с нативными подсистемами **ZFS** и **Jails**.
+        * **OpenBSD** — ОС с бескомпромиссным подходом к безопасности и аудиту исходного кода.
+    * **illumos (OpenSolaris progeny)** — Наследник OpenSolaris, ориентированный на использование технологий **ZFS**, **DTrace** и зон (**Zones**).
+    * **GNU/Hurd** — Микроядерная операционная система, представляющая академический интерес для изучения концепции микроядерной архитектуры.
+)
 
 
-2. Операционные системы / Operating Systems (Open Source)
-Выбор системного окружения определяет стабильность, безопасность и производительность всей вертикали сервисов. Фокус на архитектурных особенностях различных ядер и подсистем хранения данных.
-* GNU/Linux — Основная рабочая среда.
-  * Debian** / Ubuntu — Стандарт стабильности и популярности.
-  * Arch Linux — Для тех, кто хочет понимать каждый винтик системы. (Wiki)
-  * Alpine Linux — Минимализм (5МБ), стандарт для Docker-контейнеров.
-* BSD Family — Прямые наследники Unix с легендарным сетевым стеком.
-  * FreeBSD — Мощная система с подсистемами ZFS и Jails (прародитель контейнеров). (Handbook)
-  * OpenBSD — Бескомпромиссная безопасность и чистота кода.
-* illumos (OpenSolaris progeny) — Для ценителей технологий ZFS, DTrace и зон (Zones). (Сайт)
-* GNU/Hurd — Микроядерная ОС от Ричарда Столлмана. Скорее для академического интереса и понимания концепции микроядра. (Инфо)
 
+## Контейнеризация и изоляция / Containerization and Isolation (CI)
 
-
-Контейнеризация и изоляция / Containerization and Isolation (CI)
 1. **Механизмы системной изоляции / System Isolation Mechanisms** — Фундаментальные средства разделения ресурсов и создания независимых окружений.
-   * **Jails** — Нативная технология FreeBSD для виртуализации на уровне ядра и создания изолированных «тюрем».
-   * bhyve — Современный гипервизор FreeBSD для запуска гостевых операционных систем с аппаратным ускорением.
-   * Cgroups v2 — Механизм иерархического ограничения ресурсов (CPU, RAM, I/O) в ядре Linux.
-   * Namespaces — Технология изоляции системных ресурсов (PID, Network, Mount) для разделения видимости процессов.
-2. Среды исполнения контейнеров / Container Runtimes — Программное обеспечение для управления жизненным циклом и запуска контейнеризированных приложений.
-   * Docker — Популярная платформа для автоматизации развертывания и управления приложениями в изолированных средах.[инфо](https://habr.com/ru/companies/netologyru/articles/967546/), [инфо](https://habr.com/ru/articles/822707/), [инфо](https://habr.com/ru/articles/913978/), [инфо](https://habr.com/ru/articles/935178/), [инфо](https://habr.com/ru/articles/888540/), [инфо](https://www.youtube.com/watch?v=n9uCgUzfeRQ), [инфо](https://www.youtube.com/watch?v=RLfWakY-Ueo), [инфо](https://www.youtube.com/watch?v=UZgYKbrNAdw), [инфо](https://basis.gnulinux.pro/ru/latest/basis/63/63._%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0_%D1%81_podman.html)
-   * Podman — Движок для управления контейнерами и подами, работающий без центрального демона (daemonless).[инфо](https://selectel.ru/blog/tutorials/what-is-podman/), [инфо](https://zomro.com/rus/blog/faq/649-what-is-podman-and-how-is-it-better-than-docker), [инфо](https://habr.com/ru/companies/timeweb/articles/585758/), [инфо](https://www.youtube.com/watch?v=lr1rYnUubpQ)
-   * Containerd — Индустриальный стандарт среды выполнения, оптимизированный для интеграции в системы оркестрации.[инфо](https://habr.com/ru/companies/flant/articles/325358/), [инфо](https://habr.com/ru/companies/domclick/articles/566224/), [инфо](https://medium.com/@anatoliibriushinin/what-is-containerd-bf36c39875c5), [инфо](https://habr.com/ru/articles/568274/), [инфо](https://habr.com/ru/companies/flant/articles/442036/)
-3. Инструментарий сборки и управления / Build and Management Tools — Средства создания артефактов и локального развертывания кластерных сред.
-   * Buildah — Утилита для сборки OCI-совместимых образов без использования привилегированных демонов.[инфо](https://andreyex.ru/operacionnaya-sistema-linux/nachalo-raboty-s-buildah/), [инфо](https://habr.com/ru/companies/redhatrussia/articles/470928/)
-   * Minikube — Инструмент для быстрого запуска локального кластера Kubernetes в целях разработки и тестирования.[инфо](https://kubernetes.io/ru/docs/tutorials/hello-minikube/), [инфо](https://www.reddit.com/r/kubernetes/comments/go5nug/my_complete_course_on_learning_kubernetes_using/?tl=ru), [инфо](https://selectel.ru/blog/tutorials/how-to-run-kubernetes-with-minikube/), [инфо](https://habr.com/ru/companies/flant/articles/333470/)
-   * BastilleBSD — Фреймворк для автоматизации развертывания и управления конфигурациями Jails во FreeBSD.
-   * Vagrant — Инструмент для создания и конфигурирования переносимых сред разработки на базе различных гипервизоров.
+    * **Jails** — Нативная технология FreeBSD для виртуализации на уровне ядра и создания изолированных «тюрем».
+    * **bhyve** — Современный гипервизор FreeBSD для запуска гостевых операционных систем с аппаратным ускорением.
+    * **Cgroups v2** — Механизм иерархического ограничения ресурсов (CPU, RAM, I/O) в ядре Linux.
+    * **Namespaces** — Технология изоляции системных ресурсов (PID, Network, Mount) для разделения видимости процессов.
+
+2. **Среды исполнения контейнеров / Container Runtimes** — Программное обеспечение для управления жизненным циклом и запуска контейнеризированных приложений.
+    * **Docker** — Платформа для автоматизации развертывания и управления приложениями в изолированных средах. [[1]](https://habr.com/ru/companies/netologyru/articles/967546/) [[2]](https://habr.com/ru/articles/822707/) [[3]](https://habr.com/ru/articles/913978/) [[4]](https://habr.com/ru/articles/935178/) [[5]](https://habr.com/ru/articles/888540/) [[6]](https://www.youtube.com/watch?v=n9uCgUzfeRQ) [[7]](https://www.youtube.com/watch?v=RLfWakY-Ueo) [[8]](https://www.youtube.com/watch?v=UZgYKbrNAdw) [[9]](https://basis.gnulinux.pro/ru/latest/basis/63/63._%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0_%D1%81_podman.html)
+    * **Podman** — Движок для управления контейнерами и подами, работающий без центрального демона (daemonless). [[1]](https://selectel.ru/blog/tutorials/what-is-podman/) [[2]](https://zomro.com/rus/blog/faq/649-what-is-podman-and-how-is-it-better-than-docker) [[3]](https://habr.com/ru/companies/timeweb/articles/585758/) [[4]](https://www.youtube.com/watch?v=lr1rYnUubpQ)
+    * **Containerd** — Индустриальный стандарт среды выполнения, оптимизированный для интеграции в системы оркестрации. [[1]](https://habr.com/ru/companies/flant/articles/325358/) [[2]](https://habr.com/ru/companies/domclick/articles/566224/) [[3]](https://medium.com/@anatoliibriushinin/what-is-containerd-bf36c39875c5) [[4]](https://habr.com/ru/articles/568274/) [[5]](https://habr.com/ru/companies/flant/articles/442036/)
+
+3. **Инструментарий сборки и управления / Build and Management Tools** — Средства создания артефактов и локального развертывания кластерных сред.
+    * **Buildah** — Утилита для сборки OCI-совместимых образов без использования привилегированных демонов. [[1]](https://andreyex.ru/operacionnaya-sistema-linux/nachalo-raboty-s-buildah/) [[2]](https://habr.com/ru/companies/redhatrussia/articles/470928/)
+    * **Minikube** — Инструмент для быстрого запуска локального кластера Kubernetes в целях разработки и тестирования. [[1]](https://kubernetes.io/ru/docs/tutorials/hello-minikube/) [[2]](https://www.reddit.com/r/kubernetes/comments/go5nug/my_complete_course_on_learning_kubernetes_using/?tl=ru) [[3]](https://selectel.ru/blog/tutorials/how-to-run-kubernetes-with-minikube/) [[4]](https://habr.com/ru/companies/flant/articles/333470/)
+    * **BastilleBSD** — Фреймворк для автоматизации развертывания и управления конфигурациями Jails во FreeBSD.
+    * **Vagrant** — Инструмент для создания и конфигурирования переносимых сред разработки на базе различных гипервизоров.
+
 
 
 
