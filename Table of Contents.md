@@ -1,4 +1,24 @@
-# Table of Contents / Оглавление (ToC)
+Оглавление
+- [Лицензирование и Свобода / Licensing and Free Software (LFS)](#лицензирование-и-свобода--licensing-and-free-software-lfs)
+- [Операционные системы / Operating Systems (OS)](#операционные-системы--operating-systems-os)
+- [Контейнеризация и изоляция / Containerization and Isolation (CI)](#контейнеризация-и-изоляция--containerization-and-isolation-ci)
+- [Оркестрация и управление кластерами / Orchestration and Cluster Management (OCM)](#оркестрация-и-управление-кластерами--orchestration-and-cluster-management-ocm)
+- [Хранение секретов и ключей / Secret Management (SM)](#хранение-секретов-и-ключей--secret-management-sm)
+- [Управление привилегированным доступом / Privileged Access Management (PAM)](#управление-привилегированным-доступом--privileged-access-management-pam)
+- [Управление идентификацией и доступом / Identity and Access Management (IAM)](#управление-идентификацией-и-доступом--identity-and-access-management-iam)
+- [Базы данных / Databases (DB)](#базы-данных--databases-db)
+- [Брокеры сообщений и шины данных / Message Brokers and Streaming (MB)](#брокеры-сообщений-и-шины-данных--message-brokers-and-streaming-mb)
+- [Мониторинг и наблюдаемость / Monitoring \& Observability (MO)](#мониторинг-и-наблюдаемость--monitoring--observability-mo)
+- [Централизованное логирование / Centralized Logging (CL)](#централизованное-логирование--centralized-logging-cl)
+- [Визуализация и оповещение / Visualization and Alerting (VA)](#визуализация-и-оповещение--visualization-and-alerting-va)
+- [Сетевая связность и анализ / Network Analysis \& Connectivity (NAC)](#сетевая-связность-и-анализ--network-analysis--connectivity-nac)
+- [Системы управления конфигурациями и IaC / Configuration Management and IaC (CM)](#системы-управления-конфигурациями-и-iac--configuration-management-and-iac-cm)
+- [IP-телефония и связь / IP-Telephony and VoIP (IPT)](#ip-телефония-и-связь--ip-telephony-and-voip-ipt)
+- [Почтовые серверы и клиенты / Email Infrastructure and Clients (ES)](#почтовые-серверы-и-клиенты--email-infrastructure-and-clients-es)
+- [Резервное копирование и восстановление / Backup and Recovery (BR)](#резервное-копирование-и-восстановление--backup-and-recovery-br)
+- [Языки программирования / Programming Languages (PL)](#языки-программирования--programming-languages-pl)
+- [Инструменты разработки / Developer Tools (DevTools)](#инструменты-разработки--developer-tools-devtools)
+
 
 ## Лицензирование и Свобода / Licensing and Free Software (LFS)
 1. **Типы открытых лицензий и концепции / Open License Types and Concepts** — Фундаментальные правила использования, модификации и распространения свободного ПО.
