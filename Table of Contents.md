@@ -1,3 +1,64 @@
+# 🗺️ Оглавление / Table of Contents
+
+### 🏗️ Фундамент и Инфраструктура
+- [1. Лицензирование и Свобода (LFS)](#1-типы-лицензий-и-правовой-статус-по--license-types-and-legal-status-lfs)
+- [2. Операционные системы (OS)](#2-операционные-системы--operating-systems-os)
+- [3. Изоляция и виртуализация (Compute)](#3-изоляция-и-виртуализация--virtualization-and-core-isolation-compute)
+- [4. Контейнеризация и среды исполнения (Containers)](#4-контейнеризация-и-среды-исполнения--containerization-and-runtimes-containers)
+- [5. Оркестрация кластеров и GitOps (OCM)](#5-оркестрация-кластеров-и-gitops--cluster-orchestration-and-gitops-ocm)
+- [6. Сетевая инфраструктура и безопасность (Network Security)](#6-сетевая-инфраструктура-и-безопасность--networking-and-security-stack-network-security)
+
+### 🛡️ Стек Безопасности (Security Stack)
+- [7. Защита приложений и WAF](#7-защита-приложений-и-фильтрация-трафика--web-application-firewall-and-security-waf)
+- [8. Управление идентификацией и SSO (IAM)](#8-управление-идентификацией-и-единый-вход--identity-and-access-management-iam--sso)
+- [9. Службы каталогов и Identity](#9-службы-каталогов-и-идентификация--directory-services-identity)
+- [10. Изоляция процессов и Hardening](#10-изоляция-процессов-и-усиление-защиты--system-hardening-and-mac-security)
+- [11. Сканирование и обнаружение угроз (IDS)](#11-сканирование-и-обнаружение-угроз--scanning-and-intrusion-detection-ids)
+- [12. Шифрование данных и криптография](#12-шифрование-данных-и-криптография--data-encryption-and-cryptography-cryptography)
+
+### 💾 Данные и Хранение (Storage & Data)
+- [13. Системы управления базами данных (DBMS)](#13-системы-управления-базами-данных--database-management-systems-dbms)
+- [14. Распределенные и объектные хранилища](#14-распределенные-и-объектные-хранилища--distributed-and-object-storage-distributed-storage)
+- [15. Программные хранилища и NAS (SDS)](#15-программные-хранилища-и-сетевые-диски--software-defined-storage-and-nas-sds)
+- [16. Брокеры сообщений и шины данных (MB)](#16-брокеры-сообщений-и-шины-данных--message-brokers-and-data-buses-mb)
+- [17. Резервное копирование и восстановление (BR)](#17-резервное-копирование-и-восстановление--backup-and-disaster-recovery-br)
+
+### 🔭 Наблюдаемость и Автоматизация (DevOps)
+- [18. Системы мониторинга и метрик (MO)](#18-системы-мониторинга-и-метрик--monitoring-and-metrics-systems-mo)
+- [19. Централизованное логирование (CL)](#19-централизованное-логирование--centralized-logging-cl)
+- [20. Визуализация и оповещение (VA)](#20-визуализация-и-оповещение--visualization-and-alerting-va)
+- [21. Инфраструктура как код (IaC)](#21-инфраструктура-как-код--infrastructure-as-code-iac)
+- [22. Управление конфигурациями (CM)](#22-управление-конфигурациями--configuration-management-cm)
+
+### 💻 Стек Разработки (Development)
+- [23. Системы управления версиями (VCS)](#23-системы-управления-версиями--version-control-systems-vcs)
+- [24. Сборка и компиляция (Build Systems)](#24-сборка-и-компиляция--build-systems-and-toolchains-build-systems)
+- [25. Системная отладка и анализ (Debugging)](#25-системная-отладка-и-анализ--system-debugging-and-profiling-debugging)
+- [26. Среда разработки и редакторы (Workspace)](#26-среда-разработки-и-редакторы--development-workspace-and-editors-workspace)
+- [27. Языки программирования (PL)](#27-языки-программирования--programming-languages-pl)
+
+### 🌍 Прикладные сервисы и Связь (Communications)
+- [28. Веб-серверы и прокси-системы (Web)](#28-веб-серверы-и-прокси-системы--web-servers-and-reverse-proxies-web)
+- [29. IP-телефония и голосовая связь (VoIP)](#29-ip-телефония-и-голосовая-связь--ip-telephony-and-voice-over-ip-voip)
+- [30. Почтовая инфраструктура и клиенты (Email)](#30-почтовая-инфраструктура-и-клиенты--mail-infrastructure-and-clients-email)
+- [31. Децентрализованные мессенджеры (IM / P2P)](#31-децентрализованные-мессенджеры-и-протоколы--decentralized-messaging-im--p2p)
+- [32. Федеративные социальные сети (Fediverse)](#32-федеративные-социальные-сети--federated-social-networks-fediverse)
+- [33. Суверенные хабы (Self-hosted Hubs)](#33-суверенные-платформы-управления--self-hosted-management-hubs-hubs)
+
+### ⚙️ Инженерные и Бизнес-системы (Engineering & Business)
+- [34. Инженерное проектирование (CAD / EDA)](#34-инженерное-проектирование-и-автоматизация--engineering-design-and-automation-cad--eda)
+- [35. Управление ресурсами (ERP / CRM)](#35-управление-ресурсами-и-предприятием--enterprise-resource-planning-erp--crm)
+- [36. Логистика, склад и торговля (SCM / POS)](#36-логистика-склад-и-торговля--supply-chain-and-commerce-scm--pos)
+- [37. Работа с графикой и анимацией (2D / 3D)](#37-работа-с-графикой-и-анимацией--graphics-and-animation-2d--3d)
+- [38. Мониторинг ресурсов и активов (SAM)](#38-мониторинг-ресурсов-и-активов--asset-and-resource-monitoring-sam)
+- [39. Аналитика и ГИС (BI / GIS)](#39-аналитические-и-географические-системы--business-intelligence-and-gis-bi--gis)
+- [40. Инженерный анализ и производство (CAE / CAM)](#40-инженерный-анализ-и-производство--engineering-analysis-and-manufacturing-cae--cam)
+- [41. Специализированное управление (CBS / NIS / EAM)](#41-специализированное-управление-активами--specialized-asset-management-cbs--nis--eam)
+- [42. Управление контентом (ECM / EDMS)](#42-управление-контентом-и-документами--content-and-document-management-ecm--edms)
+- [43. Управление проектами и задачами (PMS)](#43-управление-проектами-и-разработка--project-management-and-bug-tracking-pms)
+- [44. Совместная работа и снабжение (SRM)](#44-совместная-работа-и-снабжение--collaboration-and-supply-management-srm)
+
+
 ## 1. Типы лицензий и правовой статус ПО / License Types and Legal Status (LFS)
 *Выбор лицензии определяет условия владения кодом. Инструмент должен быть под полным контролем.*
 
