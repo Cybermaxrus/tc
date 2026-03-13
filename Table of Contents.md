@@ -411,9 +411,12 @@
 *   **SuiteCRM / EspoCRM** — Системы управления отношениями с клиентами.
 
 ## 36. Логистика, склад и торговля / Supply Chain and Commerce (SCM / POS)
-*   **OpenBoxes / myWMS** — Управление цепочками поставок и складом.
-*   **PartKeepr / Snipe-IT** — Инвентаризация ИТ-активов и компонентов. [[Snipe-IT Repo]](https://github.com)
-*   **UniCenta / SambaPOS** — Системы для точек продаж и ресторанов.
+*Системы управления товарными потоками, складскими операциями и точками продаж.*
+*   **OpenBoxes** — Профессиональное решение для управления цепочками поставок и инвентаризацией. [[Docs]](https://docs.openboxes.com) | [[Repo]](https://github.com)
+*   **myWMS** — Специализированная система управления автоматизированным складом. [[Site]](http://www.mywms.org)
+*   **UniCenta** — Популярная кроссплатформенная POS-система для розничной торговли. [[Site]](https://unicenta.com)
+*   **SambaPOS** — Мощное решение для автоматизации ресторанов и кафе. [[Site]](https://sambapos.com)
+
 
 ## 37. Работа с графикой и анимацией / Graphics and Animation (2D / 3D)
 *   **2D:** **GIMP**, **Krita**, **Synfig Studio**, **OpenToonz**, **Pencil2D**.
@@ -446,3 +449,12 @@
 ## 44. Совместная работа и снабжение / Collaboration and SRM
 *   **Collaboration:** **Mattermost**, **Zulip**, **Etherpad**, **CryptPad**.
 *   **SRM:** **Apache OFBiz**, **Odoo (Purchase)**.
+
+## 45. Управление ИТ-активами и сервисными процессами / IT Asset Management and ITSM (ITAM / ITSM)
+*Централизованный учет оборудования, лицензий, расходных материалов и управление инцидентами.*
+
+*   **GLPI** — Мощная open-source платформа для управления ИТ-инфраструктурой, объединяющая глубокую инвентаризацию (Asset Management) и систему обработки заявок (Service Desk). [[Docs]](https://glpi-project.org) | [[Repo]](https://github.com) | [[Install]](https://youtube.com)
+*   **Snipe-IT** — Специализированная и интуитивно понятная система для учета ИТ-активов, программных лицензий и расходных материалов с поддержкой штрих-кодов. [[Docs]](https://snipeitapp.com) | [[Repo]](https://github.com) | [[Install]](https://youtube.com)
+*   **NetBox** — Профессиональный стандарт для документирования физической инфраструктуры: стоек, кабельных соединений, IP-адресов (IPAM) и виртуализации (DCIM). [[Docs]](https://docs.netbox.dev) | [[Repo]](https://github.com)
+*   **PartKeepr** — Нишевая система для детальной инвентаризации электронных компонентов, запчастей и микросхем (идеально для лабораторий и ремонтных цехов). [[Docs]](https://wiki.partkeepr.org) | [[Repo]](https://github.com)
+*   **OCS Inventory** — Инструмент для автоматического сканирования и сбора данных о аппаратной и программной конфигурации компьютеров в корпоративной сети. [[Docs]](https://wiki.ocsinventory-ng.org) | [[Repo]](https://github.com)
